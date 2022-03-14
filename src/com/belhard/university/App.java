@@ -4,6 +4,7 @@ public class App {
 
 	public static void main(String[] args) {
 		Teacher teacher1 = new Teacher("George", "Lemetre");
+		Teacher teacher2 = new Teacher("Edwin", "Hubble");
 		Group group1 = new Group("2019A", "Astrophysics", teacher1);
 		
 		Student student1 = new Student("Sam", "Sayer", 1995, 10, 10); 
@@ -17,7 +18,7 @@ public class App {
 		student2.setAverageMark(7.0);
 		student3.setAverageMark(8.5);
 		student4.setAverageMark(9.8);
-		student5.setAverageMark(6.8);
+		student5.setAverageMark(6.1);
 		student6.setAverageMark(9.1);
 		student7.setAverageMark(8.7);
 
@@ -30,6 +31,7 @@ public class App {
 		group1.removeStudent(student2);
 		System.out.println(group1.toList());
 		group1.removeStudent(student6);
+		group1.setTeacher(teacher2);
 		System.out.println(group1.toList());
 		group1.addStudent(student4);
 		System.out.println(group1.toList());
