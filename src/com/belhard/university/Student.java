@@ -1,18 +1,30 @@
 package com.belhard.university;
 
+import java.time.LocalDate;
+
 public class Student {
 
-	long id;
+	private static long count = 1L;
+	private long id;
 	private String firstName, lastName;
 	private String faculty;
-	private int age;
 	private double averageMark;
+	private LocalDate dateOfBirth;
 
-	public Student(String firstName, String lastName, int age) {
+	public Student(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.age = age;
-		id = (long) (Math.random() * 1000);
+		id = count++;
+	}
+
+	public Student(String firstName, String lastName, int yearOfBirth, int monthOfBirth, int dayOfBirth) {
+		this(firstName, lastName);
+		this.dateOfBirth = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
+	}
+
+	public Student(String firstName, String lastName, LocalDate dateOfBirth) {
+		this(firstName, lastName);
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public long getId() {
@@ -43,14 +55,6 @@ public class Student {
 		this.faculty = faculty;
 	}
 
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
-	}
-
 	public double getAverageMark() {
 		return averageMark;
 	}
@@ -60,6 +64,18 @@ public class Student {
 			this.averageMark = averageMark;
 		else
 			System.out.println("Mark " + averageMark + " isn't valid. Current average mark " + this.averageMark);
+	}
+
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public String getDateOfBirthString() {
+		return firstName + " " + lastName + " was born in " + dateOfBirth;
+	}
+
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 }

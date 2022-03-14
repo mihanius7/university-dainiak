@@ -1,17 +1,23 @@
 package com.belhard.university;
 
-public class Teacher {
+import java.time.LocalDate;
 
-	long id;
+public class Teacher {
+	private static long count = 1;
+	private long id;
 	private String firstName, lastName;
 	private String faculty;
-	private int age;
-	private String skill;
+	private LocalDate dateOfBirth;
 
 	public Teacher(String firstName, String lastName) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		id = (long) Math.random() * 1000;
+		id = count++;
+	}
+
+	public Teacher(String firstName, String lastName, String faculty) {
+		this(firstName, lastName);
+		this.faculty = faculty;
 	}
 
 	public long getId() {
@@ -42,20 +48,12 @@ public class Teacher {
 		this.faculty = faculty;
 	}
 
-	public int getAge() {
-		return age;
+	public LocalDate getDateOfBirth() {
+		return dateOfBirth;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
-	}
-
-	public String getSkill() {
-		return skill;
-	}
-
-	public void setSkill(String skill) {
-		this.skill = skill;
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 }
