@@ -1,6 +1,8 @@
 package com.belhard.university;
 
 import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 
 public class Student {
 
@@ -76,6 +78,10 @@ public class Student {
 
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+
+	public long defineAge() {
+		return ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
 	}
 
 }

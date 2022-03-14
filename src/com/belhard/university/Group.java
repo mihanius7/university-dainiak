@@ -100,6 +100,13 @@ public class Group {
 		return faculty;
 	}
 
+	public double defineAverageMark() {
+		double averageMark = 0;
+		for (int i = 0; i < currentStudentsCount; i++)
+			averageMark += students[i].getAverageMark() / currentStudentsCount;
+		return averageMark;
+	}
+
 	public String getInfo() {
 		return "GROUP: " + groupName + ", FACULTY: " + faculty + ", TEACHER: " + teacher.getFirstName() + " "
 				+ teacher.getLastName();
@@ -108,17 +115,20 @@ public class Group {
 	public String toList() {
 		Student student;
 		String output = "";
-		System.out.println(getInfo());
-		System.out.println("id\tFirst name\tLast name\tAverage mark");
+		System.out.println("\n" + getInfo());
+		System.out.println("id\tFirst name\tLast name\tAge\tAverage mark");
 		for (int i = 0; i < currentStudentsCount; i++) {
 			student = students[i];
 			if (student != null)
-				output = output.concat("[" + student.getId() + "]" + "\t" + student.getFirstName() + "\t"
-						+ student.getLastName() + "\t" + student.getAverageMark() + "\n");
+				output = output.concat(
+						"[" + student.getId() + "]" + "\t" + student.getFirstName() + "\t\t" + student.getLastName()
+								+ "\t\t" + student.defineAge() + "\t" + student.getAverageMark() + "\n");
 			else
 				output = output.concat("null");
 		}
-		output = output.concat("STUDENTS COUNT: " + currentStudentsCount);
+		output = output.concat("GROUP SUMMARY: students " + currentStudentsCount + ", avg. mark: "
+				+ String.format("%.2f", defineAverageMark()) + "\n");
 		return output;
 	}
+
 }
