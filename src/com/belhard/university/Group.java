@@ -126,8 +126,9 @@ public class Group {
 			else
 				output = output.concat("null");
 		}
+		int vacantPlaces = MAX_STUDENTS_COUNT - currentStudentsCount;
 		output = output.concat("GROUP SUMMARY: students " + currentStudentsCount + ", avg. mark: "
-				+ String.format("%.2f", defineAverageMark()) + "\n");
+				+ String.format("%.2f", defineAverageMark()) + ", can accept " + vacantPlaces + " students.\n");
 		return output;
 	}
 

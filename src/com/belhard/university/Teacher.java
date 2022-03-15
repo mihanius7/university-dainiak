@@ -1,59 +1,56 @@
 package com.belhard.university;
 
-import java.time.LocalDate;
+public class Teacher extends Employee {
+	private String department;
+	private AcademicDegree degree;
+	private String[] subjects;
 
-public class Teacher {
-	private static long count = 1;
-	private long id;
-	private String firstName, lastName;
-	private String faculty;
-	private LocalDate dateOfBirth;
+	public Teacher(String firstName, String lastName, int yearOfBirth, int monthOfBirth, int dayOfBirth) {
+		super(firstName, lastName, yearOfBirth, monthOfBirth, dayOfBirth);
+	}
 
 	public Teacher(String firstName, String lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		id = count++;
+		super(firstName, lastName);
+	}
+	
+	public AcademicDegree getDegree() {
+		return degree;
 	}
 
-	public Teacher(String firstName, String lastName, String faculty) {
-		this(firstName, lastName);
-		this.faculty = faculty;
+	public void setDegree(AcademicDegree degree) {
+		this.degree = degree;
 	}
 
-	public long getId() {
-		return id;
+	public String getDepartment() {
+		return department;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public void setDepartment(String department) {
+		this.department = department;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public String[] getSubjects() {
+		return subjects.clone();
 	}
 
-	public String getLastName() {
-		return lastName;
+	public void setSubjects(String[] subjects) {
+		this.subjects = subjects;
 	}
 
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getFaculty() {
-		return faculty;
-	}
-
-	public void setFaculty(String faculty) {
-		this.faculty = faculty;
-	}
-
-	public LocalDate getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(LocalDate dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public String toString() {
+		String output = degree.toString() + " ";
+		output = output.concat(super.toString());
+		output = output.concat("Seniority " + defineSeniority() + " years. ");
+		if (subjects != null) {
+			output = output.concat("\n\tSUBJECTS: ");
+			for (int i = 0; i < subjects.length; i++) {
+				if (i > 0)
+					output = output.concat(", ");
+				output = output.concat(subjects[i]);
+			}
+			output = output.concat(". ");
+		}
+		return output;
 	}
 
 }

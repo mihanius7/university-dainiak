@@ -1,51 +1,17 @@
 package com.belhard.university;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import com.belhard.Person;
 
-public class Student {
-
-	private static long count = 1L;
-	private long id;
-	private String firstName, lastName;
+public class Student extends Person {
 	private String faculty;
 	private double averageMark;
-	private LocalDate dateOfBirth;
 
 	public Student(String firstName, String lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		id = count++;
+		super(firstName, lastName);
 	}
 
 	public Student(String firstName, String lastName, int yearOfBirth, int monthOfBirth, int dayOfBirth) {
-		this(firstName, lastName);
-		this.dateOfBirth = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
-	}
-
-	public Student(String firstName, String lastName, LocalDate dateOfBirth) {
-		this(firstName, lastName);
-		this.dateOfBirth = dateOfBirth;
-	}
-
-	public long getId() {
-		return id;
-	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+		super(firstName, lastName, yearOfBirth, monthOfBirth, dayOfBirth);
 	}
 
 	public String getFaculty() {
@@ -67,20 +33,11 @@ public class Student {
 			System.out.println("Mark " + averageMark + " isn't valid. Current average mark " + this.averageMark);
 	}
 
-	public LocalDate getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public String getDateOfBirthString() {
-		return firstName + " " + lastName + " was born in " + dateOfBirth;
-	}
-
-	public void setDateOfBirth(LocalDate dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
-	public long defineAge() {
-		return ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
+	public String toString() {
+		String output = "Student ";
+		output = output.concat(super.toString());
+		output = output.concat("Average mark " + averageMark);
+		return output;
 	}
 
 }
