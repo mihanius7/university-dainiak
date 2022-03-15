@@ -1,59 +1,38 @@
 package com.belhard.university;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
-public class Teacher {
-	private static long count = 1;
-	private long id;
-	private String firstName, lastName;
-	private String faculty;
-	private LocalDate dateOfBirth;
+public class Teacher extends Person {
+	private String department;
+	private LocalDate startTeachingDate;
+
+	public Teacher(String firstName, String lastName, int yearOfBirth, int monthOfBirth, int dayOfBirth) {
+		super(firstName, lastName, yearOfBirth, monthOfBirth, dayOfBirth);
+	}
 
 	public Teacher(String firstName, String lastName) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		id = count++;
+		super(firstName, lastName);
 	}
 
-	public Teacher(String firstName, String lastName, String faculty) {
-		this(firstName, lastName);
-		this.faculty = faculty;
+	public String getDepartment() {
+		return department;
 	}
 
-	public long getId() {
-		return id;
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	
+	public LocalDate getStartTeachingDate() {
+		return startTeachingDate;
 	}
 
-	public String getFirstName() {
-		return firstName;
+	public void setStartTeachingDate(int yearOfBirth, int monthOfBirth, int dayOfBirth) {
+		this.startTeachingDate = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public String getFaculty() {
-		return faculty;
-	}
-
-	public void setFaculty(String faculty) {
-		this.faculty = faculty;
-	}
-
-	public LocalDate getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(LocalDate dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
+	public long defineSeniority() {
+		return ChronoUnit.YEARS.between(startTeachingDate, LocalDate.now());
 	}
 
 }

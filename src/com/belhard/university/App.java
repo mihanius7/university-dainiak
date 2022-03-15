@@ -4,7 +4,9 @@ public class App {
 
 	public static void main(String[] args) {
 		Teacher teacher1 = new Teacher("George", "Lemetre");
+		teacher1.setStartTeachingDate(1985, 9, 1);
 		Teacher teacher2 = new Teacher("Edwin", "Hubble");
+		teacher2.setStartTeachingDate(1983, 10, 2);
 		Group group1 = new Group("2019A", "Astrophysics", teacher1);
 		
 		Student student1 = new Student("Sam", "Sayer", 1995, 10, 10); 
@@ -38,7 +40,12 @@ public class App {
 		group1.addStudent(student6);
 		group1.addStudent(student7);
 		System.out.println(group1.toList());
-
+		
+		System.out.println(teacher1.defineSeniority());
+		System.out.println(teacher1.defineAge());
+		System.out.println(teacher2.defineSeniority());
+		System.out.println(teacher2.defineAge());
+		
 	}
 
 }
