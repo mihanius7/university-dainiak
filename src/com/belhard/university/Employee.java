@@ -4,11 +4,11 @@ import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 import com.belhard.Person;
+import com.belhard.university.util.AccountantUtil;
 
 public class Employee extends Person {
-	public static final double MIN_SALARY_USD = 250;
 	private LocalDate workingStartDate;
-	private double salaryUSD = MIN_SALARY_USD;
+	private double salaryUSD = AccountantUtil.MIN_SALARY_USD;
 	
 	public Employee(String firstName, String lastName, int yearOfBirth, int monthOfBirth, int dayOfBirth) {
 		super(firstName, lastName, yearOfBirth, monthOfBirth, dayOfBirth);
@@ -31,11 +31,11 @@ public class Employee extends Person {
 	}
 	
 	public double getSalary() {
-		return salaryUSD;
+		return AccountantUtil.defineBonusRatio(this) * salaryUSD;
 	}
-
+	
 	public void setSalary(double salaryUSD) {
-		if (salaryUSD >= MIN_SALARY_USD)
+		if (salaryUSD >= AccountantUtil.MIN_SALARY_USD)
 			this.salaryUSD = salaryUSD;
 		else
 			System.out.println("Salary not changed. ");

@@ -7,10 +7,12 @@ import com.belhard.Address;
 public class App {
 
 	public static void main(String[] args) {
-		Teacher teacher1 = new Teacher("George", "Lemetre");
-		teacher1.setWorkingStartDate(1985, 9, 1);
+		Teacher teacher1 = new Teacher("Harry", "Lemetre");
+		teacher1.setDegree(AcademicDegree.DOCTOR);
+		teacher1.setWorkingStartDate(1987, 9, 1);
 		teacher1.setSubjects(new String[] { "Astrophysics", "Physics", "Cosmology" });
 		Teacher teacher2 = new Teacher("Edwin", "Hubble");
+		teacher2.setDegree(AcademicDegree.PROFESSOR);
 		teacher2.setWorkingStartDate(1983, 10, 2);
 		teacher2.setSubjects(new String[] { "Math", "Astrophysics", "Physics", "Earth remote sensing" });
 		Cleaner cleaner1 = new Cleaner("Timmy", "Bear");

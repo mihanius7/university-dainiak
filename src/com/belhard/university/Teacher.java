@@ -2,6 +2,7 @@ package com.belhard.university;
 
 public class Teacher extends Employee {
 	private String department;
+	private AcademicDegree degree;
 	private String[] subjects;
 
 	public Teacher(String firstName, String lastName, int yearOfBirth, int monthOfBirth, int dayOfBirth) {
@@ -10,6 +11,14 @@ public class Teacher extends Employee {
 
 	public Teacher(String firstName, String lastName) {
 		super(firstName, lastName);
+	}
+	
+	public AcademicDegree getDegree() {
+		return degree;
+	}
+
+	public void setDegree(AcademicDegree degree) {
+		this.degree = degree;
 	}
 
 	public String getDepartment() {
@@ -29,7 +38,7 @@ public class Teacher extends Employee {
 	}
 
 	public String toString() {
-		String output = "Teacher ";
+		String output = degree.toString() + " ";
 		output = output.concat(super.toString());
 		output = output.concat("Seniority " + defineSeniority() + " years. ");
 		if (subjects != null) {
