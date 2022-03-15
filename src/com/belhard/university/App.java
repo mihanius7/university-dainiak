@@ -2,6 +2,8 @@ package com.belhard.university;
 
 import java.time.LocalDate;
 
+import com.belhard.Address;
+
 public class App {
 
 	public static void main(String[] args) {

@@ -1,5 +1,7 @@
 package com.belhard.university;
 
+import com.belhard.Person;
+
 public class Student extends Person {
 	private String faculty;
 	private double averageMark;

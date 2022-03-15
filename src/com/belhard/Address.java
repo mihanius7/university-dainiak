@@ -1,4 +1,4 @@
-package com.belhard.university;
+package com.belhard;
 
 public class Address {
 	private String country;

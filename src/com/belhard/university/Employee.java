@@ -3,6 +3,8 @@ package com.belhard.university;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
+import com.belhard.Person;
+
 public class Employee extends Person {
 	public static final double MIN_SALARY_USD = 250;
 	private LocalDate workingStartDate;

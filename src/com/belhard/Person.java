@@ -1,4 +1,4 @@
-package com.belhard.university;
+package com.belhard;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
