@@ -1,11 +1,8 @@
 package com.belhard.university;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
-
-public class Teacher extends Person {
+public class Teacher extends Employee {
 	private String department;
-	private LocalDate startTeachingDate;
+	private String[] subjects;
 
 	public Teacher(String firstName, String lastName, int yearOfBirth, int monthOfBirth, int dayOfBirth) {
 		super(firstName, lastName, yearOfBirth, monthOfBirth, dayOfBirth);
@@ -22,17 +19,29 @@ public class Teacher extends Person {
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	
-	public LocalDate getStartTeachingDate() {
-		return startTeachingDate;
+
+	public String[] getSubjects() {
+		return subjects.clone();
 	}
 
-	public void setStartTeachingDate(int yearOfBirth, int monthOfBirth, int dayOfBirth) {
-		this.startTeachingDate = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);;
+	public void setSubjects(String[] subjects) {
+		this.subjects = subjects;
 	}
 
-	public long defineSeniority() {
-		return ChronoUnit.YEARS.between(startTeachingDate, LocalDate.now());
+	public String toString() {
+		String output = "Teacher ";
+		output = output.concat(super.toString());
+		output = output.concat("Seniority " + defineSeniority() + " years. ");
+		if (subjects != null) {
+			output = output.concat("\n\tSUBJECTS: ");
+			for (int i = 0; i < subjects.length; i++) {
+				if (i > 0)
+					output = output.concat(", ");
+				output = output.concat(subjects[i]);
+			}
+			output = output.concat(". ");
+		}
+		return output;
 	}
 
 }

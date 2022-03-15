@@ -6,9 +6,9 @@ import java.time.temporal.ChronoUnit;
 public class Person {
 	private static long count = 1L;
 	private long id;
-	private String firstName, lastName;
-	private LocalDate dateOfBirth;
-	private Address address;
+	String firstName, lastName;
+	LocalDate dateOfBirth;
+	Address address;
 
 	public Person(String firstName, String lastName) {
 		this.firstName = firstName;
@@ -47,6 +47,10 @@ public class Person {
 
 	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
+	}	
+
+	public void setDateOfBirth(LocalDate dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 	public String getDateOfBirthString() {
@@ -56,10 +60,22 @@ public class Person {
 	public long defineAge() {
 		if (dateOfBirth != null)
 			return ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
-		else {
-			System.out.println("Age undefined for " + firstName + " " + lastName);
+		else
 			return 0;
-		}
+	}
+
+	public String toString() {
+		String output = "[" + id + "] " + firstName.toUpperCase() + " " + lastName.toUpperCase() + ". ";
+		int age = (int) defineAge();
+		if (age > 0)
+			output = output.concat(defineAge() + " years old. ");
+		else
+			output = output.concat("Age undefined. ");
+		if (address != null)
+			output = output.concat(address.toString());
+		else
+			output = output.concat("Adress undefined. ");
+		return output;
 	}
 
 }

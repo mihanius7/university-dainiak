@@ -31,11 +31,12 @@ public class Address {
 	}
 
 	public String toString() {
-		String output = country + ", " + city + ", " + street + ", " + house;
+		String output = country.toUpperCase() + ", " + city + ", " + street + ", " + house;
 		if (flat != 0)
 			output = output.concat(" - " + flat);
 		if (postalCode != 0)
 			output = output.concat(", " + postalCode);
+		output = output.concat(". ");
 		return output;
 	}
 }

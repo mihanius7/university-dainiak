@@ -31,4 +31,11 @@ public class Student extends Person {
 			System.out.println("Mark " + averageMark + " isn't valid. Current average mark " + this.averageMark);
 	}
 
+	public String toString() {
+		String output = "Student ";
+		output = output.concat(super.toString());
+		output = output.concat("Average mark " + averageMark);
+		return output;
+	}
+
 }
