@@ -1,5 +1,7 @@
 package com.belhard.university;
 
+import com.belhard.university.util.AccountantUtil;
+
 public class Teacher extends Employee {
 	private String department;
 	private AcademicDegree degree;
@@ -12,7 +14,7 @@ public class Teacher extends Employee {
 	public Teacher(String firstName, String lastName) {
 		super(firstName, lastName);
 	}
-	
+
 	public AcademicDegree getDegree() {
 		return degree;
 	}
@@ -40,7 +42,9 @@ public class Teacher extends Employee {
 	public String toString() {
 		String output = degree.toString() + " ";
 		output = output.concat(super.toString());
-		output = output.concat("Seniority " + defineSeniority() + " years. ");
+		double currentSalary = AccountantUtil.defineCurrentSalary(this);
+		double holidayPay = AccountantUtil.defineHolidayPay(this);
+		output = output.concat(String.format("Salary, USD: current %.2f, holiday pay %.2f", currentSalary, holidayPay));
 		if (subjects != null) {
 			output = output.concat("\n\tSUBJECTS: ");
 			for (int i = 0; i < subjects.length; i++) {
