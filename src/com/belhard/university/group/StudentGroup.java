@@ -50,28 +50,18 @@ public class StudentGroup extends Group {
 		return averageMark;
 	}
 
-	public String getInfo() {
-		return "GROUP: " + groupName + ", FACULTY: " + faculty + ", TEACHER: " + teacher.getFirstName() + " "
-				+ teacher.getLastName();
-	}
-
 	public String toList() {
 		Student student;
-		String output = "";
-		System.out.println("\n" + getInfo());
-		System.out.println("id\tFirst name\tLast name\tAge\tAverage mark");
+		String output = "\n" + getInfo() + "\n";
 		for (int i = 0; i < currentPersonsCount; i++) {
 			student = (Student) persons[i];
 			if (student != null)
-				output = output.concat(
-						"[" + student.getId() + "]" + "\t" + student.getFirstName() + "\t\t" + student.getLastName()
-								+ "\t\t" + student.defineAge() + "\t" + student.getAverageMark() + "\n");
+				output = output.concat(student.toString() + "\n");
 			else
 				output = output.concat("null");
 		}
-		int vacantPlaces = MAX_PERSONS_COUNT - currentPersonsCount;
-		output = output.concat("GROUP SUMMARY: students " + currentPersonsCount + ", avg. mark: "
-				+ String.format("%.2f", defineAverageMark()) + ", can accept " + vacantPlaces + " students.\n");
+		output = output.concat("Average mark: "
+				+ String.format("%.2f", defineAverageMark())+ ". ");
 		return output;
 	}
 

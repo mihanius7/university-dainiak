@@ -7,13 +7,13 @@ public abstract class Group {
 	final Person[] persons;
 	int currentPersonsCount;
 	public static final int MAX_PERSONS_COUNT = 8;
-	
+
 	public Group(String groupName) {
 		this.groupName = groupName;
 		persons = new Person[MAX_PERSONS_COUNT];
 		currentPersonsCount = 0;
 	}
-	
+
 	public void addPerson(Person newPerson) {
 		if (currentPersonsCount < MAX_PERSONS_COUNT) {
 			if (newPerson != null)
@@ -26,7 +26,7 @@ public abstract class Group {
 		} else
 			System.out.println(newPerson.getFirstName() + " wasn't added to group " + groupName + ". Group is full.");
 	}
-	
+
 	public Person[] getPersons() {
 		return persons.clone();
 	}
@@ -70,6 +70,16 @@ public abstract class Group {
 			}
 		}
 		return found;
-
 	}
+
+	public String getInfo() {
+		String output = "";
+		int vacantPlaces = MAX_PERSONS_COUNT - currentPersonsCount;
+		output = output.concat("GROUP: " + groupName + ". Persons " + currentPersonsCount + ", can accept "
+				+ vacantPlaces + " persons. ");
+		return output;
+	}
+	
+	public abstract String toList();
+
 }
