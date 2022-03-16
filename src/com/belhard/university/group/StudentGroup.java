@@ -1,6 +1,8 @@
-package com.belhard.university;
+package com.belhard.university.group;
 
 import com.belhard.Person;
+import com.belhard.university.Student;
+import com.belhard.university.Teacher;
 
 public class StudentGroup extends Group {
 

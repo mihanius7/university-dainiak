@@ -3,6 +3,7 @@ package com.belhard.university;
 import java.time.LocalDate;
 
 import com.belhard.Address;
+import com.belhard.university.group.StudentGroup;
 
 public class App {
 

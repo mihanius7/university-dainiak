@@ -1,4 +1,4 @@
-package com.belhard.university;
+package com.belhard.university.group;
 
 import com.belhard.Person;
 
