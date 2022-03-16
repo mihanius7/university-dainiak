@@ -1,7 +1,9 @@
 package com.belhard.university;
 
+import com.belhard.university.util.AccountantUtil;
+
 public class Cleaner extends Employee {
-	
+
 	public String[] roomsForCleaning;
 
 	public Cleaner(String firstName, String lastName) {
@@ -15,14 +17,18 @@ public class Cleaner extends Employee {
 	public String[] getRoomsForCleaning() {
 		return roomsForCleaning.clone();
 	}
-	
+
 	public void setRoomsForCleaning(String[] roomsForCleaning) {
 		this.roomsForCleaning = roomsForCleaning;
 	}
-	
+
 	public String toString() {
 		String output = "Cleaner ";
 		output = output.concat(super.toString());
+		double currentSalary = AccountantUtil.defineCurrentSalary(this);
+		double holidayPay = AccountantUtil.defineHolidayPay(this);
+		output = output.concat(String.format("Salary, USD: current %.2f, holiday pay %.2f", 
+				currentSalary, holidayPay));
 		if (roomsForCleaning != null) {
 			output = output.concat("\n\tROOMS FOR CLEANING: ");
 			for (int i = 0; i < roomsForCleaning.length; i++) {
