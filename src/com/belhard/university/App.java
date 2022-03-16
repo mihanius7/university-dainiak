@@ -21,7 +21,7 @@ public class App {
 		cleaner1.setRoomsForCleaning(new String[] {"303", "304-1", "304-2", "223", "225", "227"});
 		cleaner1.setWorkingStartDate(2018, 8, 15);
 		cleaner1.setBaseSalary(275);
-		Group group1 = new Group("2019A", "Astrophysics", teacher1);
+		StudentGroup studentGroup = new StudentGroup("2019A", "Astrophysics", teacher1);
 
 		Student student1 = new Student("Sam", "Sayer", 1995, 10, 10);
 		Student student2 = new Student("Tedd", "Maxwell", 1994, 3, 9);
@@ -38,22 +38,22 @@ public class App {
 		student6.setAverageMark(9.1);
 		student7.setAverageMark(8.7);
 
-		group1.addStudent(student1);
-		group1.addStudent(student2);
-		group1.addStudent(student3);
-		group1.addStudent(student4);
-		group1.addStudent(student5);
-		System.out.println(group1.toList());
-		group1.removeStudent(student2);
-		System.out.println(group1.toList());
-		group1.removeStudent(student6);
-		group1.setTeacher(teacher2);
-		System.out.println(group1.toList());
-		group1.addStudent(student4);
-		System.out.println(group1.toList());
-		group1.addStudent(student6);
-		group1.addStudent(student7);
-		System.out.println(group1.toList());
+		studentGroup.addStudent(student1);
+		studentGroup.addStudent(student2);
+		studentGroup.addStudent(student3);
+		studentGroup.addStudent(student4);
+		studentGroup.addStudent(student5);
+		System.out.println(studentGroup.toList());
+		studentGroup.removePerson(student2);
+		System.out.println(studentGroup.toList());
+		studentGroup.removePerson(student6);
+		studentGroup.setTeacher(teacher2);
+		System.out.println(studentGroup.toList());
+		studentGroup.addStudent(student4);
+		System.out.println(studentGroup.toList());
+		studentGroup.addStudent(student6);
+		studentGroup.addStudent(student7);
+		System.out.println(studentGroup.toList());
 
 		student1.setAddress(new Address("Belarus", "Minsk", "Kalvaryjskaja str.", 32, 118));
 		student2.setAddress(new Address("Poland", "Katowice", "ul. Jana Pawla II", 9));

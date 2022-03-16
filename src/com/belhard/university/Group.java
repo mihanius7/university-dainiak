@@ -1,73 +1,70 @@
 package com.belhard.university;
 
-public class Group {
+import com.belhard.Person;
 
-	private String groupName;
-	private final Student[] students;
-	private Teacher teacher;
-	private String faculty;
-	private int currentStudentsCount;
-	public static final int MAX_STUDENTS_COUNT = 8;
-
-	public Group(String groupName, String faculty, Teacher teacher) {
+public abstract class Group {
+	String groupName;
+	final Person[] persons;
+	int currentPersonsCount;
+	public static final int MAX_PERSONS_COUNT = 8;
+	
+	public Group(String groupName) {
 		this.groupName = groupName;
-		this.faculty = faculty;
-		students = new Student[MAX_STUDENTS_COUNT];
-		currentStudentsCount = 0;
-		this.teacher = teacher;
+		persons = new Person[MAX_PERSONS_COUNT];
+		currentPersonsCount = 0;
 	}
-
-	public void addStudent(Student newStudent) {
-		if (currentStudentsCount < MAX_STUDENTS_COUNT) {
-			if (newStudent != null)
-				if (!this.hasStudent(newStudent))
-					students[currentStudentsCount++] = newStudent;
+	
+	public void addPerson(Person newPerson) {
+		if (currentPersonsCount < MAX_PERSONS_COUNT) {
+			if (newPerson != null)
+				if (!this.hasPerson(newPerson))
+					persons[currentPersonsCount++] = newPerson;
 				else
-					System.out.println(newStudent.getFirstName() + " is already in group " + groupName);
+					System.out.println(newPerson.getFirstName() + " is already in group " + groupName);
 			else
 				System.out.println("Can't add 'null' student!");
 		} else
-			System.out.println(newStudent.getFirstName() + " wasn't added to group " + groupName + ". Group is full.");
+			System.out.println(newPerson.getFirstName() + " wasn't added to group " + groupName + ". Group is full.");
+	}
+	
+	public Person[] getPersons() {
+		return persons.clone();
 	}
 
-	public Student[] getStudents() {
-		return students.clone();
-	}
-
-	public boolean removeStudent(Student student) {
+	public boolean removePerson(Person person) {
 		boolean removed = false;
-		if (student != null) {
-			for (int i = 0; i < currentStudentsCount; i++) {
-				if (students[i].getId() == student.getId()) {
-					students[i] = null;
-					currentStudentsCount--;
+		if (person != null) {
+			for (int i = 0; i < currentPersonsCount; i++) {
+				if (persons[i].getId() == person.getId()) {
+					persons[i] = null;
+					currentPersonsCount--;
 					removed = true;
-					System.out.println("Student " + student.getFirstName() + " was removed");
+					System.out.println("Student " + person.getFirstName() + " was removed");
 				}
-				if (removed && students[i + 1] != null) {
-					students[i] = students[i + 1];
+				if (removed && persons[i + 1] != null) {
+					persons[i] = persons[i + 1];
 				}
 			}
 			if (!removed)
-				System.out.println("There isn't " + student.getFirstName() + " in group " + groupName);
+				System.out.println("There isn't " + person.getFirstName() + " in group " + groupName);
 		}
 		return removed;
 	}
 
-	public Student getStudent(long studentId) {
-		for (int i = 0; i < currentStudentsCount; i++) {
-			if (students[i].getId() == studentId) {
-				return students[i];
+	public Person getPerson(long personId) {
+		for (int i = 0; i < currentPersonsCount; i++) {
+			if (persons[i].getId() == personId) {
+				return persons[i];
 			}
 		}
-		System.out.println("Student [" + studentId + "] is not found in group " + groupName);
+		System.out.println("Student [" + personId + "] is not found in group " + groupName);
 		return null;
 	}
 
-	public boolean hasStudent(Student student) {
+	public boolean hasPerson(Person person) {
 		boolean found = false;
-		for (int i = 0; i < currentStudentsCount; i++) {
-			if (students[i].getId() == student.getId()) {
+		for (int i = 0; i < currentPersonsCount; i++) {
+			if (persons[i].getId() == person.getId()) {
 				found = true;
 				break;
 			}
@@ -75,61 +72,4 @@ public class Group {
 		return found;
 
 	}
-
-	public Teacher getTeacher() {
-		return teacher;
-	}
-
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
-	}
-
-	public Student getStudent() {
-		return students[currentStudentsCount - 1];
-	}
-
-	public String getGroupName() {
-		return groupName;
-	}
-
-	public int getCurrentStudentsCount() {
-		return currentStudentsCount;
-	}
-
-	public String getFaculty() {
-		return faculty;
-	}
-
-	public double defineAverageMark() {
-		double averageMark = 0;
-		for (int i = 0; i < currentStudentsCount; i++)
-			averageMark += students[i].getAverageMark() / currentStudentsCount;
-		return averageMark;
-	}
-
-	public String getInfo() {
-		return "GROUP: " + groupName + ", FACULTY: " + faculty + ", TEACHER: " + teacher.getFirstName() + " "
-				+ teacher.getLastName();
-	}
-
-	public String toList() {
-		Student student;
-		String output = "";
-		System.out.println("\n" + getInfo());
-		System.out.println("id\tFirst name\tLast name\tAge\tAverage mark");
-		for (int i = 0; i < currentStudentsCount; i++) {
-			student = students[i];
-			if (student != null)
-				output = output.concat(
-						"[" + student.getId() + "]" + "\t" + student.getFirstName() + "\t\t" + student.getLastName()
-								+ "\t\t" + student.defineAge() + "\t" + student.getAverageMark() + "\n");
-			else
-				output = output.concat("null");
-		}
-		int vacantPlaces = MAX_STUDENTS_COUNT - currentStudentsCount;
-		output = output.concat("GROUP SUMMARY: students " + currentStudentsCount + ", avg. mark: "
-				+ String.format("%.2f", defineAverageMark()) + ", can accept " + vacantPlaces + " students.\n");
-		return output;
-	}
-
 }
