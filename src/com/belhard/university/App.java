@@ -1,10 +1,13 @@
 package com.belhard.university;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.belhard.Address;
 import com.belhard.university.group.Department;
 import com.belhard.university.group.StudentGroup;
+import com.belhard.university.util.Currency;
+import com.belhard.university.util.Money;
 
 public class App {
 
@@ -75,6 +78,9 @@ public class App {
 		System.out.println(studentGroup.toList());
 		
 		System.out.println(department1.toList());
+		
+		Money m = new Money(950);
+		System.out.println(m);
 
 	}
 
