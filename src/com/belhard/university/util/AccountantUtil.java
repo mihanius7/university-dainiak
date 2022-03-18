@@ -56,11 +56,11 @@ public class AccountantUtil {
 	}
 
 	public static double defineCurrentSalary(Employee employee) {
-		return employee.getBaseSalary() * defineSeniorityBonusRatio(employee);
+		return employee.getBaseSalary().getAmount().doubleValue() * defineSeniorityBonusRatio(employee);
 	}
 
 	public static double defineCurrentSalary(Teacher teacher) {
-		return defineCurrentSalary((Employee) teacher) + defineDegreeSupplementRatio(teacher) * teacher.getBaseSalary();
+		return defineCurrentSalary((Employee) teacher) + defineDegreeSupplementRatio(teacher) * teacher.getBaseSalary().getAmount().doubleValue();
 	}
 	
 	public static double defineScholarship(Student student) {
