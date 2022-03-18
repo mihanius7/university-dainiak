@@ -71,6 +71,10 @@ public abstract class Group {
 		}
 		return found;
 	}
+	
+	public int getCurrentPersonCount() {
+		return currentPersonsCount;
+	}
 
 	public String getInfo() {
 		String output = "";

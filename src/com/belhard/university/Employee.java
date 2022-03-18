@@ -5,6 +5,8 @@ import java.time.temporal.ChronoUnit;
 
 import com.belhard.Person;
 import com.belhard.university.util.AccountantUtil;
+import com.belhard.university.util.Currency;
+import com.belhard.university.util.CurrencyUtil;
 import com.belhard.university.util.Money;
 
 public abstract class Employee extends Person {
@@ -38,9 +40,13 @@ public abstract class Employee extends Person {
 		return baseSalary;
 	}
 
-	public void setBaseSalary(Money baseSalary) {
-		if (baseSalary.getAmount().doubleValue() >= AccountantUtil.MIN_SALARY_USD)
-			this.baseSalary.setAmount(baseSalary);
+	public void setBaseSalary(Money newSalary) {
+		if (newSalary.getCurrency() != Currency.USD) {
+			newSalary.setAmount(CurrencyUtil.convertToUSD(newSalary));
+			System.out.println("Currency converted to USD. ");
+		}
+		if (newSalary.getAmount().doubleValue() >= AccountantUtil.MIN_SALARY_USD)
+			this.baseSalary.setAmount(newSalary);
 		else
 			System.out.println("Base salary not changed. ");
 	}

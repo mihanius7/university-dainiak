@@ -1,6 +1,5 @@
 package com.belhard.university;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import com.belhard.Address;
@@ -33,13 +32,15 @@ public class App {
 		Cleaner cleaner1 = new Cleaner("Timmy", "Bear");
 		cleaner1.setRoomsForCleaning(new String[] {"303", "304-1", "304-2", "223", "225", "227"});
 		cleaner1.setWorkingStartDate(2018, 8, 15);
-		cleaner1.setBaseSalary(new Money(225, Currency.EUR));
+		cleaner1.setBaseSalary(new Money(240, Currency.EUR));
 		
 		Department department1 = new Department("Astrophysics and Theoretical Physics", teacher2);
 		department1.addTeacher(teacher1);
+		System.out.println(department1.toList());
 		department1.addTeacher(teacher2);
 		department1.addTeacher(teacher3);
 		department1.setCleaner(cleaner1);
+		System.out.println(department1.toList());
 		
 		StudentGroup studentGroup = new StudentGroup("2019A", "Astrophysics", teacher1);
 				
@@ -75,12 +76,7 @@ public class App {
 		System.out.println(studentGroup.toList());
 		studentGroup.addStudent(student6);
 		studentGroup.addStudent(student7);
-		System.out.println(studentGroup.toList());
-		
-		System.out.println(department1.toList());
-		
-		Money m = new Money(950);
-		System.out.println(m);
+		System.out.println(studentGroup.toList());		
 
 	}
 

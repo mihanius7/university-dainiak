@@ -2,9 +2,9 @@ package com.belhard.university.group;
 
 import com.belhard.Person;
 import com.belhard.university.Cleaner;
-import com.belhard.university.Student;
 import com.belhard.university.Teacher;
 import com.belhard.university.util.AccountantUtil;
+import com.belhard.university.util.Money;
 
 public class Department extends Group {
 	Teacher manager;
@@ -44,11 +44,8 @@ public class Department extends Group {
 		this.cleaner = cleaner;
 	}
 
-	public double defineTotalSalary() {
-		double totalSalary = AccountantUtil.defineCurrentSalary(cleaner);
-		for (int i = 0; i < currentPersonsCount; i++)
-			totalSalary += AccountantUtil.defineCurrentSalary((Teacher) persons[i]);
-		return totalSalary;
+	public Money defineTotalSalary() {
+		return AccountantUtil.defineSalary(this);
 	}
 
 	public String toList() {
@@ -61,9 +58,11 @@ public class Department extends Group {
 			else
 				output = output.concat("null");
 		}
-		output = output.concat(
-				"Manager is " + manager.getDegree().toString().toLowerCase() + " "+ manager.getFirstName() + " " + manager.getLastName() + ". \n");
-		output = output.concat("Total current salary, USD: " + String.format("%.2f", defineTotalSalary()) + ". ");
+		output = output.concat("Manager is " + manager.getDegree().toString().toLowerCase() + " "
+				+ manager.getFirstName() + " " + manager.getLastName() + ". \n");
+		if (cleaner != null)
+			output = output.concat(cleaner.toString() + "\n");
+		output = output.concat("Total current salary: " + defineTotalSalary() + ". ");
 		return output;
 	}
 
