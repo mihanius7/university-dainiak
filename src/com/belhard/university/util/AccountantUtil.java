@@ -1,19 +1,23 @@
 package com.belhard.university.util;
 
+import java.math.BigDecimal;
+
+import com.belhard.Person;
 import com.belhard.university.Employee;
 import com.belhard.university.Student;
 import com.belhard.university.Teacher;
+import com.belhard.university.group.Department;
 
 public class AccountantUtil {
 	public static final double MIN_SALARY_USD = 250;
 	public final static double SENIORITY_BONUS_YEAR_FACTOR = 1.07;
-	public final static double SENIORITY_MAX_BONUS_RATIO = 2.5;	
+	public final static double SENIORITY_MAX_BONUS_RATIO = 2.5;
 	public final static double HOLIDAY_PAY_RATIO = 2.5;
-	
+
 	public final static double MASTER_DEGREE_SUPPLEMENT = 1.15;
 	public final static double DOCTOR_DEGREE_SUPPLEMENT = 1.3;
 	public final static double PROFESSOR_DEGREE_SUPPLEMENT = 1.45;
-	
+
 	public final static double MIN_SCHOLARSHIP = 60;
 	public final static double SCHOLARSHIP_MIN_AVERAGE_MARK = 5.0;
 	public final static double SCHOLARSHIP_AVERAGE_MARK_FACTOR = 1.1;
@@ -55,20 +59,32 @@ public class AccountantUtil {
 		return 0;
 	}
 
-	public static double defineCurrentSalary(Employee employee) {
-		return employee.getBaseSalary() * defineSeniorityBonusRatio(employee);
+	public static Money defineCurrentSalary(Employee employee) {
+		return new Money(employee.getBaseSalary().getAmount().doubleValue() * defineSeniorityBonusRatio(employee));
 	}
 
-	public static double defineCurrentSalary(Teacher teacher) {
-		return defineCurrentSalary((Employee) teacher) + defineDegreeSupplementRatio(teacher) * teacher.getBaseSalary();
+	public static Money defineCurrentSalary(Teacher teacher) {
+		return new Money(defineCurrentSalary((Employee) teacher).getAmount().doubleValue()
+				+ defineDegreeSupplementRatio(teacher) * teacher.getBaseSalary().getAmount().doubleValue());
 	}
-	
+
 	public static double defineScholarship(Student student) {
 		return MIN_SCHOLARSHIP * defineScholarshipRatio(student);
 	}
-	
-	public static double defineHolidayPay(Employee employee) {
-		return defineHolidayPayRatio(employee) * defineCurrentSalary(employee);
+
+	public static Money defineHolidayPay(Employee employee) {
+		return new Money(defineHolidayPayRatio(employee) * defineCurrentSalary(employee).getAmount().doubleValue());
+	}
+
+	public static Money defineSalary(Department dep) {
+		Person[] persons = dep.getPersons();
+		int count = dep.getCurrentPersonCount();
+		BigDecimal totalSalary = BigDecimal.valueOf(0.0);
+		if (dep.getCleaner() != null)
+			totalSalary = defineCurrentSalary(dep.getCleaner()).getAmount();
+		for (int i = 0; i < count; i++)
+			totalSalary = totalSalary.add(defineCurrentSalary((Teacher) persons[i]).getAmount());
+		return new Money(totalSalary, Currency.USD);
 	}
 
 }

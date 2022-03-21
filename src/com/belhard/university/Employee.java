@@ -5,10 +5,13 @@ import java.time.temporal.ChronoUnit;
 
 import com.belhard.Person;
 import com.belhard.university.util.AccountantUtil;
+import com.belhard.university.util.Currency;
+import com.belhard.university.util.CurrencyUtil;
+import com.belhard.university.util.Money;
 
 public abstract class Employee extends Person {
 	private LocalDate workingStartDate;
-	double baseSalary = AccountantUtil.MIN_SALARY_USD;
+	Money baseSalary = new Money(AccountantUtil.MIN_SALARY_USD);
 
 	public Employee(String firstName, String lastName, int yearOfBirth, int monthOfBirth, int dayOfBirth) {
 		super(firstName, lastName, yearOfBirth, monthOfBirth, dayOfBirth);
@@ -33,13 +36,17 @@ public abstract class Employee extends Person {
 			return -1;
 	}
 
-	public double getBaseSalary() {
+	public Money getBaseSalary() {
 		return baseSalary;
 	}
 
-	public void setBaseSalary(double baseSalary) {
-		if (baseSalary >= AccountantUtil.MIN_SALARY_USD)
-			this.baseSalary = baseSalary;
+	public void setBaseSalary(Money newSalary) {
+		if (newSalary.getCurrency() != Currency.USD) {
+			newSalary.setAmount(CurrencyUtil.convertToUSD(newSalary));
+			System.out.println("Currency converted to USD. ");
+		}
+		if (newSalary.getAmount().doubleValue() >= AccountantUtil.MIN_SALARY_USD)
+			this.baseSalary.setAmount(newSalary);
 		else
 			System.out.println("Base salary not changed. ");
 	}

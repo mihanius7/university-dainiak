@@ -1,6 +1,7 @@
 package com.belhard.university;
 
 import com.belhard.university.util.AccountantUtil;
+import com.belhard.university.util.Money;
 
 public class Teacher extends Employee {
 	private String department;
@@ -42,9 +43,9 @@ public class Teacher extends Employee {
 	public String toString() {
 		String output = degree.toString() + " ";
 		output = output.concat(super.toString());
-		double currentSalary = AccountantUtil.defineCurrentSalary(this);
-		double holidayPay = AccountantUtil.defineHolidayPay(this);
-		output = output.concat(String.format("Salary, USD: current %.2f, holiday pay %.2f", currentSalary, holidayPay));
+		Money currentSalary = AccountantUtil.defineCurrentSalary(this);
+		Money holidayPay = AccountantUtil.defineHolidayPay(this);
+		output = output.concat("Salary: current "+ currentSalary + ", holiday pay " + holidayPay);
 		if (subjects != null) {
 			output = output.concat("\n\tSUBJECTS: ");
 			for (int i = 0; i < subjects.length; i++) {

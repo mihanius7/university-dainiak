@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import com.belhard.Address;
 import com.belhard.university.group.Department;
 import com.belhard.university.group.StudentGroup;
+import com.belhard.university.util.Currency;
+import com.belhard.university.util.Money;
 
 public class App {
 
@@ -15,28 +17,30 @@ public class App {
 		teacher1.setWorkingStartDate(1987, 9, 1);
 		teacher1.setAddress(new Address("Italy", "Rome", "via Nazionale", 13));
 		teacher1.setSubjects(new String[] { "Astrophysics", "Physics", "Cosmology" });
-		teacher1.setBaseSalary(450);
+		teacher1.setBaseSalary(new Money(450));
 		Teacher teacher2 = new Teacher("Edwin", "Hubble");
 		teacher2.setDegree(AcademicDegree.PROFESSOR);
 		teacher2.setWorkingStartDate(1983, 10, 2);
 		teacher2.setSubjects(new String[] { "Math", "Astrophysics", "Physics", "Earth remote sensing" });
-		teacher2.setBaseSalary(450);
+		teacher2.setBaseSalary(new Money(450));
 		Teacher teacher3 = new Teacher("Ludwig", "Alaskin");
 		teacher3.setDegree(AcademicDegree.MASTER);
 		teacher3.setDateOfBirth(LocalDate.of(1985, 7, 11));
 		teacher3.setWorkingStartDate(2010, 01, 10);
 		teacher3.setSubjects(new String[] { "Math", "Computer science"});
-		teacher3.setBaseSalary(330);		
+		teacher3.setBaseSalary(new Money(330));		
 		Cleaner cleaner1 = new Cleaner("Timmy", "Bear");
 		cleaner1.setRoomsForCleaning(new String[] {"303", "304-1", "304-2", "223", "225", "227"});
 		cleaner1.setWorkingStartDate(2018, 8, 15);
-		cleaner1.setBaseSalary(275);
+		cleaner1.setBaseSalary(new Money(240, Currency.EUR));
 		
 		Department department1 = new Department("Astrophysics and Theoretical Physics", teacher2);
 		department1.addTeacher(teacher1);
+		System.out.println(department1.toList());
 		department1.addTeacher(teacher2);
 		department1.addTeacher(teacher3);
 		department1.setCleaner(cleaner1);
+		System.out.println(department1.toList());
 		
 		StudentGroup studentGroup = new StudentGroup("2019A", "Astrophysics", teacher1);
 				
@@ -72,9 +76,7 @@ public class App {
 		System.out.println(studentGroup.toList());
 		studentGroup.addStudent(student6);
 		studentGroup.addStudent(student7);
-		System.out.println(studentGroup.toList());
-		
-		System.out.println(department1.toList());
+		System.out.println(studentGroup.toList());		
 
 	}
 
