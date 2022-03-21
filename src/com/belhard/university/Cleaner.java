@@ -19,6 +19,19 @@ public class Cleaner extends Employee {
 		return roomsForCleaning.clone();
 	}
 
+	public String getRoomsForCleaningString() {
+		String output = "";
+		if (roomsForCleaning != null) {
+			for (int i = 0; i < roomsForCleaning.length; i++) {
+				if (i > 0)
+					output = output.concat(", ");
+				output = output.concat(roomsForCleaning[i]);
+			}
+			output = output.concat(". ");
+		}
+		return output;
+	}
+
 	public void setRoomsForCleaning(String[] roomsForCleaning) {
 		this.roomsForCleaning = roomsForCleaning;
 	}
@@ -28,16 +41,16 @@ public class Cleaner extends Employee {
 		output = output.concat(super.toString());
 		Money currentSalary = AccountantUtil.defineCurrentSalary(this);
 		Money holidayPay = AccountantUtil.defineHolidayPay(this);
-		output = output.concat("Salary: current "+ currentSalary + ", holiday pay " + holidayPay);
-		if (roomsForCleaning != null) {
-			output = output.concat("\n\tROOMS FOR CLEANING: ");
-			for (int i = 0; i < roomsForCleaning.length; i++) {
-				if (i > 0)
-					output = output.concat(", ");
-				output = output.concat(roomsForCleaning[i]);
-			}
-			output = output.concat(". ");
-		}
+		output = output.concat("Salary: current " + currentSalary + ", holiday pay " + holidayPay);
+		getRoomsForCleaningString();
+		return output;
+	}
+
+	@Override
+	public String introduceYourself() {
+		String output = String.format(
+				"Hello! My name is %s. I am %d years old. Now I'm a cleaner. I like %nmy work because I have free mind and can to listen podcasts simultaneously. %nI must clean the folowing rooms: %s%n",
+				firstName, defineAge(), getRoomsForCleaningString().toLowerCase());
 		return output;
 	}
 

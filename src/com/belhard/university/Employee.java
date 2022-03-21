@@ -25,8 +25,8 @@ public abstract class Employee extends Person {
 		return workingStartDate;
 	}
 
-	public void setWorkingStartDate(int yearOfBirth, int monthOfBirth, int dayOfBirth) {
-		this.workingStartDate = LocalDate.of(yearOfBirth, monthOfBirth, dayOfBirth);
+	public void setWorkingStartDate(int year, int month, int day) {
+		this.workingStartDate = LocalDate.of(year, month, day);
 	}
 
 	public long defineSeniorityYears() {
@@ -43,7 +43,6 @@ public abstract class Employee extends Person {
 	public void setBaseSalary(Money newSalary) {
 		if (newSalary.getCurrency() != Currency.USD) {
 			newSalary.setAmount(CurrencyUtil.convertToUSD(newSalary));
-			System.out.println("Currency converted to USD. ");
 		}
 		if (newSalary.getAmount().doubleValue() >= AccountantUtil.MIN_SALARY_USD)
 			this.baseSalary.setAmount(newSalary);

@@ -8,7 +8,7 @@ import com.belhard.university.group.StudentGroup;
 import com.belhard.university.util.Currency;
 import com.belhard.university.util.Money;
 
-public class App {
+public class Task1 {
 
 	public static void main(String[] args) {
 		Teacher teacher1 = new Teacher("Harry", "Lemetre");
@@ -30,6 +30,7 @@ public class App {
 		teacher3.setSubjects(new String[] { "Math", "Computer science"});
 		teacher3.setBaseSalary(new Money(330));		
 		Cleaner cleaner1 = new Cleaner("Timmy", "Bear");
+		cleaner1.setDateOfBirth(LocalDate.of(1990, 8, 7));
 		cleaner1.setRoomsForCleaning(new String[] {"303", "304-1", "304-2", "223", "225", "227"});
 		cleaner1.setWorkingStartDate(2018, 8, 15);
 		cleaner1.setBaseSalary(new Money(240, Currency.EUR));
@@ -53,13 +54,27 @@ public class App {
 		Student student7 = new Student("Anna", "Uta", 1993, 6, 7);
 		student1.setAverageMark(9.1);
 		student1.setAddress(new Address("Belarus", "Minsk", "Kalvaryjskaja str.", 32, 118));
+		student1.setStudyStartDate(2017, 9, 1);
+		student1.setFaculty(Faculty.PHYSICS);
 		student2.setAverageMark(7.0);
 		student2.setAddress(new Address("Poland", "Katowice", "ul. Jana Pawla II", 9));
+		student2.setStudyStartDate(2017, 9, 1);
+		student2.setFaculty(Faculty.PHYSICS);
 		student3.setAverageMark(8.5);
+		student3.setStudyStartDate(2017, 9, 1);
+		student3.setFaculty(Faculty.BIOLOGY);
 		student4.setAverageMark(9.8);
+		student4.setStudyStartDate(2017, 9, 1);
+		student4.setFaculty(Faculty.BIOLOGY);
 		student5.setAverageMark(6.1);
+		student5.setStudyStartDate(2016, 9, 1);
+		student5.setFaculty(Faculty.COMPUTER_SCIENCE);
 		student6.setAverageMark(9.1);
+		student6.setStudyStartDate(2016, 9, 1);
+		student6.setFaculty(Faculty.COMPUTER_SCIENCE);
 		student7.setAverageMark(8.7);
+		student7.setStudyStartDate(2016, 9, 1);
+		student7.setFaculty(Faculty.PHYSICS);
 
 		studentGroup.addStudent(student1);
 		studentGroup.addStudent(student2);
@@ -76,7 +91,12 @@ public class App {
 		System.out.println(studentGroup.toList());
 		studentGroup.addStudent(student6);
 		studentGroup.addStudent(student7);
-		System.out.println(studentGroup.toList());		
+		System.out.println(studentGroup.toList());
+		
+		System.out.println();
+		System.out.println(student2.introduceYourself());
+		System.out.println(cleaner1.introduceYourself());
+		System.out.println(teacher3.introduceYourself());
 
 	}
 

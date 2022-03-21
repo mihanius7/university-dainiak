@@ -3,10 +3,10 @@ package com.belhard;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class Person {
+public abstract class Person {
 	private static long count = 1L;
 	private long id;
-	String firstName, lastName;
+	protected String firstName, lastName;
 	LocalDate dateOfBirth;
 	Address address;
 
@@ -63,6 +63,8 @@ public class Person {
 		else
 			return 0;
 	}
+	
+	public abstract String introduceYourself(); 
 
 	public String toString() {
 		String output = "[" + id + "] " + firstName.toUpperCase() + " " + lastName.toUpperCase() + ". ";

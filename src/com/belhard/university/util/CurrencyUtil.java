@@ -37,7 +37,6 @@ public class CurrencyUtil {
 
 	public static Money convertToUSD(Money money) {
 		Money output;
-		System.out.println(money);
 		if (money.getCurrency() == Currency.BYN) {
 			output = new Money(money.getAmount().multiply(BigDecimal.valueOf(BYN_TO_USD)), Currency.USD);
 			return output;

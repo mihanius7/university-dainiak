@@ -40,21 +40,34 @@ public class Teacher extends Employee {
 		this.subjects = subjects;
 	}
 
+	public String getSubjectsString() {
+		String output = "";
+		if (subjects != null) {
+			for (int i = 0; i < subjects.length; i++) {
+				if (i > 0)
+					output = output.concat(", ");
+				output = output.concat(subjects[i]);
+
+			}
+			output = output.concat(". ");
+		}
+		return output;
+	}
+
 	public String toString() {
 		String output = degree.toString() + " ";
 		output = output.concat(super.toString());
 		Money currentSalary = AccountantUtil.defineCurrentSalary(this);
 		Money holidayPay = AccountantUtil.defineHolidayPay(this);
-		output = output.concat("Salary: current "+ currentSalary + ", holiday pay " + holidayPay);
-		if (subjects != null) {
-			output = output.concat("\n\tSUBJECTS: ");
-			for (int i = 0; i < subjects.length; i++) {
-				if (i > 0)
-					output = output.concat(", ");
-				output = output.concat(subjects[i]);
-			}
-			output = output.concat(". ");
-		}
+		output = output.concat("Salary: current " + currentSalary + ", holiday pay " + holidayPay);
+		getSubjectsString();
+		return output;
+	}
+
+	@Override
+	public String introduceYourself() {
+		String output = String.format("Hello! My name is %s %s. I am %d years old. I am a %s. %nI am teaching %s%n",
+				firstName, lastName, defineAge(), degree.toString().toLowerCase(), getSubjectsString());
 		return output;
 	}
 
