@@ -3,7 +3,9 @@ package com.belhard;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public abstract class Person {
+import com.belhard.university.Identifiable;
+
+public abstract class Person implements Identifiable {
 	private static long count = 1L;
 	private long id;
 	protected String firstName, lastName;

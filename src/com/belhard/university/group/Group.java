@@ -1,8 +1,11 @@
 package com.belhard.university.group;
 
 import com.belhard.Person;
+import com.belhard.university.Identifiable;
 
-public abstract class Group {
+public abstract class Group implements Identifiable {
+	private static long count = 1L;
+	private long id;
 	String groupName;
 	final Person[] persons;
 	int currentPersonsCount;
@@ -12,6 +15,7 @@ public abstract class Group {
 		this.groupName = groupName;
 		persons = new Person[MAX_PERSONS_COUNT];
 		currentPersonsCount = 0;
+		id = count++;
 	}
 
 	public void addPerson(Person newPerson) {
@@ -29,6 +33,10 @@ public abstract class Group {
 
 	public Person[] getPersons() {
 		return persons.clone();
+	}
+	
+	public long getId() {
+		return id;
 	}
 
 	public boolean removePerson(Person person) {
