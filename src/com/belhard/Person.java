@@ -2,6 +2,7 @@ package com.belhard;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 import com.belhard.university.Identifiable;
 
@@ -49,7 +50,7 @@ public abstract class Person implements Identifiable {
 
 	public LocalDate getDateOfBirth() {
 		return dateOfBirth;
-	}	
+	}
 
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
@@ -65,8 +66,8 @@ public abstract class Person implements Identifiable {
 		else
 			return 0;
 	}
-	
-	public abstract String introduceYourself(); 
+
+	public abstract String introduceYourself();
 
 	@Override
 	public String toString() {
@@ -82,7 +83,7 @@ public abstract class Person implements Identifiable {
 			output = output.concat("Adress undefined. ");
 		return output;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int result = (int) id;
@@ -95,8 +96,15 @@ public abstract class Person implements Identifiable {
 
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Person other = (Person) obj;
+		return id == other.id && dateOfBirth == other.getDateOfBirth() && Objects.equals(firstName, other.firstName)
+				&& Objects.equals(lastName, other.lastName) && Objects.equals(address, other.address);
 	}
 
 }
