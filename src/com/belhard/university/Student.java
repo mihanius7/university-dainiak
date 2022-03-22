@@ -66,11 +66,10 @@ public class Student extends Person {
 
 	@Override
 	public int hashCode() {
-		int result = (int) id;
-		result = 31 * result + defineAge();
-		result = 31 * result + (int) averageMark;
-		result = 31 * result + (firstName == null ? 0 : firstName.hashCode());
-		result = 31 * result + (lastName == null ? 0 : lastName.hashCode());
+		int result = super.hashCode();
+		result = 31 * result + (int) averageMark * 100;
+		result = 31 * result + (studyStartDate == null ? 0 : studyStartDate.hashCode());
+		result = 31 * result + (faculty == null ? 0 : faculty.hashCode());
 		return result;
 	}
 

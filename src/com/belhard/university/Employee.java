@@ -56,5 +56,13 @@ public abstract class Employee extends Person {
 		output = output.concat("Seniority " + defineSeniorityYears() + " years. ");
 		return output;
 	}
+	
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + (baseSalary == null ? 0 : baseSalary.hashCode());
+		result = 31 * result + (workingStartDate == null ? 0 : workingStartDate.hashCode());
+		return result;
+	}
 
 }

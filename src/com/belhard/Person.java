@@ -82,5 +82,21 @@ public abstract class Person implements Identifiable {
 			output = output.concat("Adress undefined. ");
 		return output;
 	}
+	
+	@Override
+	public int hashCode() {
+		int result = (int) id;
+		result = 31 * result + (dateOfBirth == null ? 0 : dateOfBirth.hashCode());
+		result = 31 * result + (address == null ? 0 : address.hashCode());
+		result = 31 * result + (firstName == null ? 0 : firstName.hashCode());
+		result = 31 * result + (lastName == null ? 0 : lastName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
 
 }

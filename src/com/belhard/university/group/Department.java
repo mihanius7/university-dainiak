@@ -73,9 +73,10 @@ public class Department extends Group {
 	
 	@Override
 	public int hashCode() {
-		int result = (int) id;
-		result = 31 * result + manager.hashCode();
-		result = 31 * result + (groupName == null ? 0 : groupName.hashCode());
+		int result = super.hashCode();
+		result = 31 * result + (cleaner == null ? 0 : cleaner.hashCode());
+		result = 31 * result + (manager == null ? 0 : manager.hashCode());
+		result = 31 * result + (managerDeputy == null ? 0 : managerDeputy.hashCode());
 		return result;
 	}
 

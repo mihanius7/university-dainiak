@@ -74,11 +74,10 @@ public class Teacher extends Employee {
 	
 	@Override
 	public int hashCode() {
-		int result = (int) id;
-		result = 31 * result + defineAge();
+		int result = super.hashCode();
 		result = 31 * result + (degree == null ? 0 : degree.hashCode());
-		result = 31 * result + (firstName == null ? 0 : firstName.hashCode());
-		result = 31 * result + (lastName == null ? 0 : lastName.hashCode());
+		result = 31 * result + (department == null ? 0 : department.hashCode());
+		result = 31 * result + (subjects == null ? 0 : subjects.hashCode());
 		return result;
 	}
 

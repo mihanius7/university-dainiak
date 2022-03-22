@@ -98,5 +98,20 @@ public abstract class Group implements Identifiable {
 	}
 	
 	public abstract String toList();
+	
+	@Override
+	public int hashCode() {
+		int result = (int) id;
+		result = 31 * result + (groupName == null ? 0 : groupName.hashCode());
+		result = 31 * result + currentPersonsCount;
+		result = 31 * result + (persons == null ? 0 : persons.hashCode());
+		return result;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
 
 }

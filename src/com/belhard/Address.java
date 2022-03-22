@@ -30,6 +30,7 @@ public class Address {
 		this.postalCode = postalCode;
 	}
 
+	@Override
 	public String toString() {
 		String output = country.toUpperCase() + ", " + city + ", " + street + ", " + house;
 		if (flat != 0)
@@ -39,4 +40,18 @@ public class Address {
 		output = output.concat(". ");
 		return output;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		result = prime * result + ((country == null) ? 0 : country.hashCode());
+		result = prime * result + flat;
+		result = prime * result + house;
+		result = prime * result + (int) (postalCode ^ (postalCode >>> 32));
+		result = prime * result + ((street == null) ? 0 : street.hashCode());
+		return result;
+	}	
+	
 }

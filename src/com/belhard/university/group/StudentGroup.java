@@ -72,9 +72,9 @@ public class StudentGroup extends Group {
 
 	@Override
 	public int hashCode() {
-		int result = (int) id;
-		result = 31 * result + teacher.hashCode();
-		result = 31 * result + (groupName == null ? 0 : groupName.hashCode());
+		int result = super.hashCode();
+		result = 31 * result + (teacher == null ? 0 : teacher.hashCode());
+		result = 31 * result + (faculty == null ? 0 : faculty.hashCode());
 		return result;
 	}
 
