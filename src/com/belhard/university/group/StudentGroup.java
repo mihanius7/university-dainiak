@@ -1,15 +1,16 @@
 package com.belhard.university.group;
 
 import com.belhard.Person;
+import com.belhard.university.Faculty;
 import com.belhard.university.Student;
 import com.belhard.university.Teacher;
 
 public class StudentGroup extends Group {
 
 	Teacher teacher;
-	String faculty;
+	Faculty faculty;
 
-	public StudentGroup(String groupName, String faculty, Teacher teacher) {
+	public StudentGroup(String groupName, Faculty faculty, Teacher teacher) {
 		super(groupName);
 		this.faculty = faculty;
 		this.teacher = teacher;
@@ -39,7 +40,7 @@ public class StudentGroup extends Group {
 		return currentPersonsCount;
 	}
 
-	public String getFaculty() {
+	public Faculty getFaculty() {
 		return faculty;
 	}
 
@@ -60,20 +61,21 @@ public class StudentGroup extends Group {
 			else
 				output = output.concat("null");
 		}
-		output = output.concat("Average mark: "
-				+ String.format("%.2f", defineAverageMark())+ ". ");
+		output = output.concat("Average mark: " + String.format("%.2f", defineAverageMark()) + ". ");
 		return output;
 	}
-	
+
 	@Override
 	public String toString() {
 		return toList();
 	}
-	
+
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+		int result = (int) id;
+		result = 31 * result + teacher.hashCode();
+		result = 31 * result + (groupName == null ? 0 : groupName.hashCode());
+		return result;
 	}
 
 	@Override

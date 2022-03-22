@@ -73,8 +73,10 @@ public class Department extends Group {
 	
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+		int result = (int) id;
+		result = 31 * result + manager.hashCode();
+		result = 31 * result + (groupName == null ? 0 : groupName.hashCode());
+		return result;
 	}
 
 	@Override

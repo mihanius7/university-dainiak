@@ -11,7 +11,7 @@ import com.belhard.university.util.Money;
 
 public abstract class Employee extends Person {
 	private LocalDate workingStartDate;
-	Money baseSalary = new Money(AccountantUtil.MIN_SALARY_USD);
+	Money baseSalary = new Money(AccountantUtil.MIN_SALARY_USD, Currency.USD);
 
 	public Employee(String firstName, String lastName, int yearOfBirth, int monthOfBirth, int dayOfBirth) {
 		super(firstName, lastName, yearOfBirth, monthOfBirth, dayOfBirth);
@@ -33,7 +33,7 @@ public abstract class Employee extends Person {
 		if (workingStartDate != null)
 			return ChronoUnit.YEARS.between(workingStartDate, LocalDate.now());
 		else
-			return -1;
+			return 0;
 	}
 
 	public Money getBaseSalary() {

@@ -53,5 +53,20 @@ public class Cleaner extends Employee {
 				firstName, defineAge(), getRoomsForCleaningString().toLowerCase());
 		return output;
 	}
+	
+	@Override
+	public int hashCode() {
+		int result = (int) id;
+		result = 31 * result + defineAge();
+		result = 31 * result + (firstName == null ? 0 : firstName.hashCode());
+		result = 31 * result + (lastName == null ? 0 : lastName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
 
 }

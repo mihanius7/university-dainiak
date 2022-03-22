@@ -36,11 +36,11 @@ public class Student extends Person {
 		else
 			System.out.println("Mark " + averageMark + " isn't valid. Current average mark " + this.averageMark);
 	}
-	
+
 	public void setStudyStartDate(int year, int month, int day) {
 		this.studyStartDate = LocalDate.of(year, month, day);
 	}
-	
+
 	public long defineYearOfStudy() {
 		if (studyStartDate != null)
 			return ChronoUnit.YEARS.between(studyStartDate, LocalDate.now());
@@ -58,14 +58,20 @@ public class Student extends Person {
 
 	@Override
 	public String introduceYourself() {
-		String output = String.format("Hi! My name is %s. I am %d years old and I'm a student %nof %s faculty during %d years.%n", firstName, defineAge(), faculty.toString().toLowerCase(), defineYearOfStudy());
+		String output = String.format(
+				"Hi! My name is %s. I am %d years old and I'm a student %nof %s faculty during %d years.%n", firstName,
+				defineAge(), faculty.toString().toLowerCase(), defineYearOfStudy());
 		return output;
 	}
 
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+		int result = (int) id;
+		result = 31 * result + defineAge();
+		result = 31 * result + (int) averageMark;
+		result = 31 * result + (firstName == null ? 0 : firstName.hashCode());
+		result = 31 * result + (lastName == null ? 0 : lastName.hashCode());
+		return result;
 	}
 
 	@Override

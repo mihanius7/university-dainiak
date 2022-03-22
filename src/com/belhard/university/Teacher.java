@@ -56,7 +56,7 @@ public class Teacher extends Employee {
 
 	@Override
 	public String toString() {
-		String output = degree.toString() + " ";
+		String output = (degree != null) ? degree.toString() + " " : "";
 		output = output.concat(super.toString());
 		Money currentSalary = AccountantUtil.defineCurrentSalary(this);
 		Money holidayPay = AccountantUtil.defineHolidayPay(this);
@@ -74,8 +74,12 @@ public class Teacher extends Employee {
 	
 	@Override
 	public int hashCode() {
-		// TODO Auto-generated method stub
-		return super.hashCode();
+		int result = (int) id;
+		result = 31 * result + defineAge();
+		result = 31 * result + (degree == null ? 0 : degree.hashCode());
+		result = 31 * result + (firstName == null ? 0 : firstName.hashCode());
+		result = 31 * result + (lastName == null ? 0 : lastName.hashCode());
+		return result;
 	}
 
 	@Override

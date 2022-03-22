@@ -35,20 +35,22 @@ public class AccountantUtil {
 
 	private static double defineDegreeSupplementRatio(Teacher teacher) {
 		double supplementRatio = 0;
-		switch (teacher.getDegree()) {
-		case MASTER:
-			supplementRatio = MASTER_DEGREE_SUPPLEMENT;
-			break;
-		case DOCTOR:
-			supplementRatio = DOCTOR_DEGREE_SUPPLEMENT;
-			break;
-		case PROFESSOR:
-			supplementRatio = PROFESSOR_DEGREE_SUPPLEMENT;
-			break;
-		default:
-			System.out.println(
-					"Degree pupplement for " + teacher.getFirstName() + teacher.getLastName() + "is not defined.");
-			break;
+		if (teacher.getDegree() != null) {
+			switch (teacher.getDegree()) {
+			case MASTER:
+				supplementRatio = MASTER_DEGREE_SUPPLEMENT;
+				break;
+			case DOCTOR:
+				supplementRatio = DOCTOR_DEGREE_SUPPLEMENT;
+				break;
+			case PROFESSOR:
+				supplementRatio = PROFESSOR_DEGREE_SUPPLEMENT;
+				break;
+			default:
+				System.out.println(
+						"Degree pupplement for " + teacher.getFirstName() + teacher.getLastName() + "is not defined.");
+				break;
+			}
 		}
 		return supplementRatio;
 	}

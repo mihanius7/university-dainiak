@@ -5,7 +5,7 @@ import com.belhard.university.Identifiable;
 
 public abstract class Group implements Identifiable {
 	private static long count = 1L;
-	private long id;
+	protected long id;
 	String groupName;
 	final Person[] persons;
 	int currentPersonsCount;

@@ -7,7 +7,7 @@ import com.belhard.university.Identifiable;
 
 public abstract class Person implements Identifiable {
 	private static long count = 1L;
-	private long id;
+	protected long id;
 	protected String firstName, lastName;
 	LocalDate dateOfBirth;
 	Address address;
@@ -59,9 +59,9 @@ public abstract class Person implements Identifiable {
 		return firstName + " " + lastName + " was born in " + dateOfBirth;
 	}
 
-	public long defineAge() {
+	public int defineAge() {
 		if (dateOfBirth != null)
-			return ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
+			return (int) ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
 		else
 			return 0;
 	}

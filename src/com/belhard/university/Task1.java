@@ -43,7 +43,7 @@ public class Task1 {
 		department1.setCleaner(cleaner1);
 		System.out.println(department1.toList());
 		
-		StudentGroup studentGroup = new StudentGroup("2019A", "Astrophysics", teacher1);
+		StudentGroup studentGroup = new StudentGroup("2019A", Faculty.PHYSICS, teacher1);
 				
 		Student student1 = new Student("Sam", "Sayer", 1995, 10, 10);
 		Student student2 = new Student("Tedd", "Maxwell", 1994, 3, 9);
