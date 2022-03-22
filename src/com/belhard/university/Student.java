@@ -48,6 +48,7 @@ public class Student extends Person {
 			return -1;
 	}
 
+	@Override
 	public String toString() {
 		String output = "Student ";
 		output = output.concat(super.toString());
@@ -59,6 +60,18 @@ public class Student extends Person {
 	public String introduceYourself() {
 		String output = String.format("Hi! My name is %s. I am %d years old and I'm a student %nof %s faculty during %d years.%n", firstName, defineAge(), faculty.toString().toLowerCase(), defineYearOfStudy());
 		return output;
+	}
+
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
 	}
 
 }

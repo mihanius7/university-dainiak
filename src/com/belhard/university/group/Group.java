@@ -92,6 +92,11 @@ public abstract class Group implements Identifiable {
 		return output;
 	}
 	
+	@Override
+	public String toString() {
+		return getInfo();
+	}
+	
 	public abstract String toList();
 
 }

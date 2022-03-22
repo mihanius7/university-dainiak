@@ -68,6 +68,7 @@ public abstract class Person implements Identifiable {
 	
 	public abstract String introduceYourself(); 
 
+	@Override
 	public String toString() {
 		String output = "[" + id + "] " + firstName.toUpperCase() + " " + lastName.toUpperCase() + ". ";
 		int age = (int) defineAge();

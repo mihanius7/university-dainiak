@@ -50,6 +50,7 @@ public abstract class Employee extends Person {
 			System.out.println("Base salary not changed. ");
 	}
 
+	@Override
 	public String toString() {
 		String output = super.toString() + "\n\t";
 		output = output.concat("Seniority " + defineSeniorityYears() + " years. ");

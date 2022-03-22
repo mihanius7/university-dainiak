@@ -54,6 +54,7 @@ public class Teacher extends Employee {
 		return output;
 	}
 
+	@Override
 	public String toString() {
 		String output = degree.toString() + " ";
 		output = output.concat(super.toString());
@@ -69,6 +70,18 @@ public class Teacher extends Employee {
 		String output = String.format("Hello! My name is %s %s. I am %d years old. I am a %s. %nI am teaching %s%n",
 				firstName, lastName, defineAge(), degree.toString().toLowerCase(), getSubjectsString());
 		return output;
+	}
+	
+	@Override
+	public int hashCode() {
+		// TODO Auto-generated method stub
+		return super.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
 	}
 
 }
