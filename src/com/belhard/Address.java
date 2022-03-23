@@ -1,5 +1,7 @@
 package com.belhard;
 
+import java.util.Objects;
+
 public class Address {
 	private String country;
 	private String city;
@@ -52,6 +54,20 @@ public class Address {
 		result = prime * result + (int) (postalCode ^ (postalCode >>> 32));
 		result = prime * result + ((street == null) ? 0 : street.hashCode());
 		return result;
-	}	
-	
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Address other = (Address) obj;
+		return Objects.equals(city, other.city) && Objects.equals(country, other.country)
+				&& Objects.equals(street, other.street) && flat == other.flat && house == other.house
+				&& postalCode == other.postalCode;
+	}
+
 }
