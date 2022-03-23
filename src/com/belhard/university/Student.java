@@ -2,6 +2,7 @@ package com.belhard.university;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 import com.belhard.Person;
 
@@ -75,8 +76,15 @@ public class Student extends Person {
 
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		return super.equals(obj) && studyStartDate == other.studyStartDate && Objects.equals(faculty, other.faculty)
+				&& averageMark == other.averageMark;
 	}
 
 }
