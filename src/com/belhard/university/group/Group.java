@@ -1,5 +1,7 @@
 package com.belhard.university.group;
 
+import java.util.Objects;
+
 import com.belhard.Person;
 import com.belhard.university.Identifiable;
 
@@ -34,7 +36,7 @@ public abstract class Group implements Identifiable {
 	public Person[] getPersons() {
 		return persons.clone();
 	}
-	
+
 	public long getId() {
 		return id;
 	}
@@ -79,7 +81,7 @@ public abstract class Group implements Identifiable {
 		}
 		return found;
 	}
-	
+
 	public int getCurrentPersonCount() {
 		return currentPersonsCount;
 	}
@@ -91,14 +93,14 @@ public abstract class Group implements Identifiable {
 				+ vacantPlaces + " persons. ");
 		return output;
 	}
-	
+
 	@Override
 	public String toString() {
 		return getInfo();
 	}
-	
+
 	public abstract String toList();
-	
+
 	@Override
 	public int hashCode() {
 		int result = (int) id;
@@ -107,11 +109,18 @@ public abstract class Group implements Identifiable {
 		result = 31 * result + (persons == null ? 0 : persons.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Group other = (Group) obj;
+		return id == other.id && currentPersonsCount == other.currentPersonsCount
+				&& Objects.equals(groupName, other.groupName) && Objects.equals(persons, other.persons);
 	}
 
 }
