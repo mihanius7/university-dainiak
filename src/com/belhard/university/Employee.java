@@ -2,6 +2,7 @@ package com.belhard.university;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 import com.belhard.Person;
 import com.belhard.university.util.AccountantUtil;
@@ -11,7 +12,7 @@ import com.belhard.university.util.Money;
 
 public abstract class Employee extends Person {
 	private LocalDate workingStartDate;
-	Money baseSalary = new Money(AccountantUtil.MIN_SALARY_USD);
+	Money baseSalary = new Money(AccountantUtil.MIN_SALARY_USD, Currency.USD);
 
 	public Employee(String firstName, String lastName, int yearOfBirth, int monthOfBirth, int dayOfBirth) {
 		super(firstName, lastName, yearOfBirth, monthOfBirth, dayOfBirth);
@@ -33,7 +34,7 @@ public abstract class Employee extends Person {
 		if (workingStartDate != null)
 			return ChronoUnit.YEARS.between(workingStartDate, LocalDate.now());
 		else
-			return -1;
+			return 0;
 	}
 
 	public Money getBaseSalary() {
@@ -50,10 +51,33 @@ public abstract class Employee extends Person {
 			System.out.println("Base salary not changed. ");
 	}
 
+	@Override
 	public String toString() {
 		String output = super.toString() + "\n\t";
 		output = output.concat("Seniority " + defineSeniorityYears() + " years. ");
 		return output;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + (baseSalary == null ? 0 : baseSalary.hashCode());
+		result = 31 * result + (workingStartDate == null ? 0 : workingStartDate.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		return super.equals(obj) && Objects.equals(workingStartDate, other.workingStartDate)
+				&& Objects.equals(baseSalary, other.baseSalary);
+
 	}
 
 }

@@ -2,6 +2,7 @@ package com.belhard.university;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 import com.belhard.Person;
 
@@ -36,11 +37,11 @@ public class Student extends Person {
 		else
 			System.out.println("Mark " + averageMark + " isn't valid. Current average mark " + this.averageMark);
 	}
-	
+
 	public void setStudyStartDate(int year, int month, int day) {
 		this.studyStartDate = LocalDate.of(year, month, day);
 	}
-	
+
 	public long defineYearOfStudy() {
 		if (studyStartDate != null)
 			return ChronoUnit.YEARS.between(studyStartDate, LocalDate.now());
@@ -48,6 +49,7 @@ public class Student extends Person {
 			return -1;
 	}
 
+	@Override
 	public String toString() {
 		String output = "Student ";
 		output = output.concat(super.toString());
@@ -57,8 +59,32 @@ public class Student extends Person {
 
 	@Override
 	public String introduceYourself() {
-		String output = String.format("Hi! My name is %s. I am %d years old and I'm a student %nof %s faculty during %d years.%n", firstName, defineAge(), faculty.toString().toLowerCase(), defineYearOfStudy());
+		String output = String.format(
+				"Hi! My name is %s. I am %d years old and I'm a student %nof %s faculty during %d years.%n", firstName,
+				defineAge(), faculty.toString().toLowerCase(), defineYearOfStudy());
 		return output;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + (int) averageMark * 100;
+		result = 31 * result + (studyStartDate == null ? 0 : studyStartDate.hashCode());
+		result = 31 * result + (faculty == null ? 0 : faculty.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		return super.equals(obj) && Objects.equals(studyStartDate, other.studyStartDate) && Objects.equals(faculty, other.faculty)
+				&& averageMark == other.averageMark;
 	}
 
 }

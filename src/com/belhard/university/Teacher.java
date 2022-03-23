@@ -1,5 +1,7 @@
 package com.belhard.university;
 
+import java.util.Objects;
+
 import com.belhard.university.util.AccountantUtil;
 import com.belhard.university.util.Money;
 
@@ -54,8 +56,9 @@ public class Teacher extends Employee {
 		return output;
 	}
 
+	@Override
 	public String toString() {
-		String output = degree.toString() + " ";
+		String output = (degree != null) ? degree.toString() + " " : "";
 		output = output.concat(super.toString());
 		Money currentSalary = AccountantUtil.defineCurrentSalary(this);
 		Money holidayPay = AccountantUtil.defineHolidayPay(this);
@@ -69,6 +72,28 @@ public class Teacher extends Employee {
 		String output = String.format("Hello! My name is %s %s. I am %d years old. I am a %s. %nI am teaching %s%n",
 				firstName, lastName, defineAge(), degree.toString().toLowerCase(), getSubjectsString());
 		return output;
+	}
+
+	@Override
+	public int hashCode() {
+		int result = super.hashCode();
+		result = 31 * result + (degree == null ? 0 : degree.hashCode());
+		result = 31 * result + (department == null ? 0 : department.hashCode());
+		result = 31 * result + (subjects == null ? 0 : subjects.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Teacher other = (Teacher) obj;
+		return super.equals(obj) && Objects.equals(degree, other.degree) && Objects.equals(department, other.department)
+				&& Objects.equals(subjects, other.subjects);
 	}
 
 }
