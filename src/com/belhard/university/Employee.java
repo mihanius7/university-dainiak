@@ -2,6 +2,7 @@ package com.belhard.university;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Objects;
 
 import com.belhard.Person;
 import com.belhard.university.util.AccountantUtil;
@@ -56,13 +57,27 @@ public abstract class Employee extends Person {
 		output = output.concat("Seniority " + defineSeniorityYears() + " years. ");
 		return output;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int result = super.hashCode();
 		result = 31 * result + (baseSalary == null ? 0 : baseSalary.hashCode());
 		result = 31 * result + (workingStartDate == null ? 0 : workingStartDate.hashCode());
 		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		return super.equals(obj) && Objects.equals(workingStartDate, other.workingStartDate)
+				&& Objects.equals(baseSalary, other.baseSalary);
+
 	}
 
 }

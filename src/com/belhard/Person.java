@@ -103,8 +103,9 @@ public abstract class Person implements Identifiable {
 		if (getClass() != obj.getClass())
 			return false;
 		Person other = (Person) obj;
-		return id == other.id && dateOfBirth == other.getDateOfBirth() && Objects.equals(firstName, other.firstName)
-				&& Objects.equals(lastName, other.lastName) && Objects.equals(address, other.address);
+		return id == other.id && Objects.equals(dateOfBirth, other.dateOfBirth)
+				&& Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName)
+				&& Objects.equals(address, other.address);
 	}
 
 }

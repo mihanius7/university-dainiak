@@ -1,5 +1,7 @@
 package com.belhard.university;
 
+import java.util.Objects;
+
 import com.belhard.university.util.AccountantUtil;
 import com.belhard.university.util.Money;
 
@@ -71,7 +73,7 @@ public class Teacher extends Employee {
 				firstName, lastName, defineAge(), degree.toString().toLowerCase(), getSubjectsString());
 		return output;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int result = super.hashCode();
@@ -83,8 +85,15 @@ public class Teacher extends Employee {
 
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Teacher other = (Teacher) obj;
+		return super.equals(obj) && Objects.equals(degree, other.degree) && Objects.equals(department, other.department)
+				&& Objects.equals(subjects, other.subjects);
 	}
 
 }

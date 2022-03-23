@@ -83,7 +83,7 @@ public class Student extends Person {
 		if (getClass() != obj.getClass())
 			return false;
 		Student other = (Student) obj;
-		return super.equals(obj) && studyStartDate == other.studyStartDate && Objects.equals(faculty, other.faculty)
+		return super.equals(obj) && Objects.equals(studyStartDate, other.studyStartDate) && Objects.equals(faculty, other.faculty)
 				&& averageMark == other.averageMark;
 	}
 
