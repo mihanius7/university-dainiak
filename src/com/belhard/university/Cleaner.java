@@ -1,5 +1,7 @@
 package com.belhard.university;
 
+import java.util.Objects;
+
 import com.belhard.university.util.AccountantUtil;
 import com.belhard.university.util.Money;
 
@@ -53,7 +55,7 @@ public class Cleaner extends Employee {
 				firstName, defineAge(), getRoomsForCleaningString().toLowerCase());
 		return output;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int result = (int) id;
@@ -65,8 +67,14 @@ public class Cleaner extends Employee {
 
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Cleaner other = (Cleaner) obj;
+		return super.equals(obj) && Objects.equals(roomsForCleaning, other.roomsForCleaning);
 	}
 
 }
