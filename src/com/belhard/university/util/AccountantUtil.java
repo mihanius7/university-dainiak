@@ -6,6 +6,7 @@ import com.belhard.Person;
 import com.belhard.university.Employee;
 import com.belhard.university.Student;
 import com.belhard.university.Teacher;
+import com.belhard.university.datastructures.MyArray;
 import com.belhard.university.group.Department;
 
 public class AccountantUtil {
@@ -79,13 +80,13 @@ public class AccountantUtil {
 	}
 
 	public static Money defineSalary(Department dep) {
-		Person[] persons = dep.getPersons();
+		MyArray persons = dep.getPersons();
 		int count = dep.getCurrentPersonCount();
 		BigDecimal totalSalary = BigDecimal.valueOf(0.0);
 		if (dep.getCleaner() != null)
 			totalSalary = defineCurrentSalary(dep.getCleaner()).getAmount();
 		for (int i = 0; i < count; i++)
-			totalSalary = totalSalary.add(defineCurrentSalary((Teacher) persons[i]).getAmount());
+			totalSalary = totalSalary.add(defineCurrentSalary((Teacher) dep.getTeacher(i)).getAmount());
 		return new Money(totalSalary, Currency.USD);
 	}
 

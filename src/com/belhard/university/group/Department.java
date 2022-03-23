@@ -19,11 +19,15 @@ public class Department extends Group {
 	}
 
 	public void addTeacher(Person newTeacher) {
-		super.addPerson(newTeacher);
+		addPerson(newTeacher);
 	}
 
 	public Teacher getManager() {
 		return manager;
+	}
+
+	public Teacher getTeacher(int index) {
+		return (Teacher) getPerson(index);
 	}
 
 	public void setManager(Teacher manager) {
@@ -53,8 +57,8 @@ public class Department extends Group {
 	public String toList() {
 		Teacher teacher;
 		String output = "\n" + getInfo() + "\n";
-		for (int i = 0; i < currentPersonsCount; i++) {
-			teacher = (Teacher) persons[i];
+		for (int i = 0; i < getCurrentPersonCount(); i++) {
+			teacher = getTeacher(i);
 			if (teacher != null)
 				output = output.concat(teacher.toString() + "\n");
 			else

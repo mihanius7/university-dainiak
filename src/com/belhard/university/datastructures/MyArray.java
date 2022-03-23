@@ -22,11 +22,11 @@ public class MyArray implements MyIterable {
 
 	@Override
 	public boolean add(Object obj) {
-		if (!contains(obj) && array.length < MAX_ARRAY_SIZE) {
+		if (!contains(obj) && array.length < MAX_ARRAY_SIZE && obj != null) {
 			Object[] newArray = new Object[array.length + 1];
+			newArray[newArray.length - 1] = obj;
 			for (int i = 0; i < array.length; i++)
 				newArray[i] = array[i];
-			newArray[array.length + 1] = obj;
 			array = newArray;
 			return true;
 		}
@@ -42,7 +42,7 @@ public class MyArray implements MyIterable {
 					array[i] = null;
 					removed = true;
 				}
-				if (removed && array[i + 1] != null)
+				if (removed && i < array.length - 1)
 					array[i] = array[i + 1];
 			}
 		}
@@ -60,7 +60,7 @@ public class MyArray implements MyIterable {
 
 	@Override
 	public Object get(int index) {
-		if (index > 0 && index < array.length)
+		if (index >= 0 && index < array.length)
 			return array[index];
 		return null;
 	}
