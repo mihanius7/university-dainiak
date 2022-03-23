@@ -1,5 +1,7 @@
 package com.belhard.university.group;
 
+import java.util.Objects;
+
 import com.belhard.Person;
 import com.belhard.university.Cleaner;
 import com.belhard.university.Teacher;
@@ -65,12 +67,12 @@ public class Department extends Group {
 		output = output.concat("Total current salary: " + defineTotalSalary() + ". ");
 		return output;
 	}
-	
+
 	@Override
 	public String toString() {
 		return toList();
 	}
-	
+
 	@Override
 	public int hashCode() {
 		int result = super.hashCode();
@@ -82,8 +84,15 @@ public class Department extends Group {
 
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Department other = (Department) obj;
+		return super.equals(obj) && Objects.equals(cleaner, other.cleaner) && Objects.equals(manager, other.manager)
+				&& Objects.equals(managerDeputy, other.managerDeputy);
 	}
 
 }

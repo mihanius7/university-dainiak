@@ -1,5 +1,7 @@
 package com.belhard.university.group;
 
+import java.util.Objects;
+
 import com.belhard.Person;
 import com.belhard.university.Faculty;
 import com.belhard.university.Student;
@@ -80,8 +82,14 @@ public class StudentGroup extends Group {
 
 	@Override
 	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		return super.equals(obj);
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		StudentGroup other = (StudentGroup) obj;
+		return super.equals(obj) && Objects.equals(faculty, other.faculty) && Objects.equals(teacher, other.teacher);
 	}
 
 }
