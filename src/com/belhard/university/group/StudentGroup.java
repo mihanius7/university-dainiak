@@ -19,7 +19,7 @@ public class StudentGroup extends Group {
 	}
 
 	public void addStudent(Person newStudent) {
-		super.addPerson(newStudent);
+		addPerson(newStudent);
 	}
 
 	public Teacher getTeacher() {
@@ -30,8 +30,8 @@ public class StudentGroup extends Group {
 		this.teacher = teacher;
 	}
 
-	public Person getStudent() {
-		return persons[currentPersonsCount - 1];
+	public Student getStudent(int index) {
+		return (Student) getPerson(index);
 	}
 
 	public String getGroupName() {
@@ -39,7 +39,7 @@ public class StudentGroup extends Group {
 	}
 
 	public int getCurrentStudentsCount() {
-		return currentPersonsCount;
+		return getCurrentPersonCount();
 	}
 
 	public Faculty getFaculty() {
@@ -48,16 +48,16 @@ public class StudentGroup extends Group {
 
 	public double defineAverageMark() {
 		double averageMark = 0;
-		for (int i = 0; i < currentPersonsCount; i++)
-			averageMark += ((Student) persons[i]).getAverageMark() / currentPersonsCount;
+		for (int i = 0; i < getCurrentPersonCount(); i++)
+			averageMark += (getStudent(i)).getAverageMark() / getCurrentPersonCount();
 		return averageMark;
 	}
 
 	public String toList() {
 		Student student;
 		String output = "\n" + getInfo() + "\n";
-		for (int i = 0; i < currentPersonsCount; i++) {
-			student = (Student) persons[i];
+		for (int i = 0; i < getCurrentPersonCount(); i++) {
+			student = getStudent(i);
 			if (student != null)
 				output = output.concat(student.toString() + "\n");
 			else

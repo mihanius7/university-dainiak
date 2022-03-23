@@ -77,7 +77,6 @@ public abstract class Employee extends Person {
 		Employee other = (Employee) obj;
 		return super.equals(obj) && Objects.equals(workingStartDate, other.workingStartDate)
 				&& Objects.equals(baseSalary, other.baseSalary);
-
 	}
 
 }
