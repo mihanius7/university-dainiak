@@ -1,1 +1,3 @@
-University domain model.
+# University domain model.
+
+Created for hometask doing.
