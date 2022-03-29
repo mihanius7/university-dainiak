@@ -74,7 +74,8 @@ public class AccountantUtil {
 	}
 
 	public static Money defineHolidayPay(Employee employee) {
-		return new Money(defineHolidayPayRatio(employee) * defineCurrentSalary(employee).getAmount().doubleValue());
+		return new Money(
+				defineHolidayPayRatio(employee) * defineCurrentSalary((Employee) employee).getAmount().doubleValue());
 	}
 
 	public static Money defineSalary(Department dep) {

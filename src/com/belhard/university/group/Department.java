@@ -64,15 +64,12 @@ public class Department extends Group {
 		String output = "\n" + getInfo() + "\n";
 		for (int i = 0; i < getCurrentPersonCount(); i++) {
 			teacher = getTeacher(i);
-			if (teacher != null)
-				output = output.concat(teacher.toString() + "\n");
-			else
-				output = output.concat("null");
+			output = output.concat("TEACHER " + teacher.toString() + "\n");
 		}
-		output = output.concat("Manager is " + manager.getDegree().toString().toLowerCase() + " "
-				+ manager.getFirstName() + " " + manager.getLastName() + ". \n");
 		if (cleaner != null)
 			output = output.concat(cleaner.toString() + "\n");
+		output = output.concat("DEPARTMENT MANAGER " + manager.getDegree().toString().toLowerCase() + " "
+				+ manager.getFirstName() + " " + manager.getLastName() + ". \n");
 		output = output.concat("Total current salary: " + defineTotalSalary() + ". ");
 		return output;
 	}

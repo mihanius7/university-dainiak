@@ -58,7 +58,7 @@ public class Teacher extends Employee {
 
 	@Override
 	public String toString() {
-		String output = (degree != null) ? degree.toString() + " " : "";
+		String output = (degree != null) ? degree.toString().toLowerCase() + " " : "";
 		output = output.concat(super.toString());
 		Money currentSalary = AccountantUtil.defineCurrentSalary(this);
 		Money holidayPay = AccountantUtil.defineHolidayPay(this);

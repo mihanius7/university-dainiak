@@ -11,6 +11,8 @@ import com.belhard.university.util.Money;
 public class Task1 {
 
 	public static void main(String[] args) {
+		
+		//Departments
 		Teacher teacher1 = new Teacher("Harry", "Lemetre");
 		teacher1.setDegree(AcademicDegree.DOCTOR);
 		teacher1.setDateOfBirth(LocalDate.of(1960, 4, 15));
@@ -33,8 +35,7 @@ public class Task1 {
 		cleaner1.setDateOfBirth(LocalDate.of(1990, 8, 7));
 		cleaner1.setRoomsForCleaning(new String[] {"303", "304-1", "304-2", "223", "225", "227"});
 		cleaner1.setWorkingStartDate(2018, 8, 15);
-		cleaner1.setBaseSalary(new Money(240, Currency.EUR));
-		
+		cleaner1.setBaseSalary(new Money(240, Currency.EUR));		
 		Department department1 = new Department("Astrophysics and Theoretical Physics", teacher2);
 		department1.addTeacher(teacher1);
 		System.out.println(department1.toList());
@@ -43,8 +44,8 @@ public class Task1 {
 		department1.setCleaner(cleaner1);
 		System.out.println(department1.toList());
 		
+		//Students group
 		StudentGroup studentGroup = new StudentGroup("2019A", Faculty.PHYSICS, teacher1);
-				
 		Student student1 = new Student("Sam", "Sayer", 1995, 10, 10);
 		Student student2 = new Student("Tedd", "Maxwell", 1994, 3, 9);
 		Student student3 = new Student("Garry", "Daniels", 1995, 5, 3);
@@ -75,7 +76,6 @@ public class Task1 {
 		student7.setAverageMark(8.7);
 		student7.setStudyStartDate(2016, 9, 1);
 		student7.setFaculty(Faculty.PHYSICS);
-
 		studentGroup.addStudent(student1);
 		studentGroup.addStudent(student2);
 		studentGroup.addStudent(student3);
@@ -93,11 +93,10 @@ public class Task1 {
 		studentGroup.addStudent(student7);
 		System.out.println(studentGroup.toList());
 		
+		//Introducing
 		System.out.println();
 		System.out.println(student2.introduceYourself());
 		System.out.println(cleaner1.introduceYourself());
 		System.out.println(teacher3.introduceYourself());
-
 	}
-
 }

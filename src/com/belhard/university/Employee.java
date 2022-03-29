@@ -53,7 +53,7 @@ public abstract class Employee extends Person {
 
 	@Override
 	public String toString() {
-		String output = super.toString() + "\n\t";
+		String output = super.toString() + "\n";
 		output = output.concat("Seniority " + defineSeniorityYears() + " years. ");
 		return output;
 	}
