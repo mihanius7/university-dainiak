@@ -1,16 +1,16 @@
 package com.belhard.university.datastructures;
 
-public interface MyIterable {
+public interface MyIterable<E> {
 	int size();
 
-	boolean add(Object obj);
+	boolean add(E obj);
 
-	boolean remove(Object obj);
+	boolean remove(E obj);
 
-	boolean contains(Object obj);
+	boolean contains(E obj);
 
-	Object get(int index);
+	E get(int index);
 
-	Object[] toArray();
+	E[] toArray();
 
 }
