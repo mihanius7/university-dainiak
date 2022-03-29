@@ -11,6 +11,7 @@ public abstract class Group implements Identifiable {
 	protected long id;
 	protected String groupName;
 	private final MyArray<Person> persons;
+	
 	public static final int MAX_PERSONS_COUNT = 8;
 
 	public Group(String groupName) {
