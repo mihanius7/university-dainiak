@@ -31,7 +31,10 @@ public class Department extends Group {
 	}
 
 	public void setManager(Teacher manager) {
-		this.manager = manager;
+		if (manager != null) {
+			addTeacher(manager);
+			this.manager = manager;
+		}
 	}
 
 	public Teacher getManagerDeputy() {
@@ -39,7 +42,10 @@ public class Department extends Group {
 	}
 
 	public void setManagerDeputy(Teacher managerDeputy) {
-		this.managerDeputy = managerDeputy;
+		if (managerDeputy != null) {
+			addTeacher(managerDeputy);
+			this.managerDeputy = managerDeputy;
+		}
 	}
 
 	public Cleaner getCleaner() {
