@@ -2,11 +2,9 @@ package com.belhard.university.util;
 
 import java.math.BigDecimal;
 
-import com.belhard.Person;
 import com.belhard.university.Employee;
 import com.belhard.university.Student;
 import com.belhard.university.Teacher;
-import com.belhard.university.datastructures.MyArray;
 import com.belhard.university.group.Department;
 
 public class AccountantUtil {

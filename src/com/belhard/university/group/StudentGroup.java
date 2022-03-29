@@ -2,7 +2,6 @@ package com.belhard.university.group;
 
 import java.util.Objects;
 
-import com.belhard.Person;
 import com.belhard.university.Faculty;
 import com.belhard.university.Student;
 import com.belhard.university.Teacher;

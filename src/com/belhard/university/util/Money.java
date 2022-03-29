@@ -3,8 +3,6 @@ package com.belhard.university.util;
 import java.math.BigDecimal;
 import java.util.Objects;
 
-import com.belhard.Person;
-
 public class Money {
 	public static final String DOUBLE_FORMAT = "%.2f ";
 	BigDecimal amount;
