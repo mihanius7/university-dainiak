@@ -80,7 +80,6 @@ public class AccountantUtil {
 	}
 
 	public static Money defineSalary(Department dep) {
-		MyArray persons = dep.getPersons();
 		int count = dep.getCurrentPersonCount();
 		BigDecimal totalSalary = BigDecimal.valueOf(0.0);
 		if (dep.getCleaner() != null)

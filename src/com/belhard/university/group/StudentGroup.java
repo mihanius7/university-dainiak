@@ -8,9 +8,8 @@ import com.belhard.university.Student;
 import com.belhard.university.Teacher;
 
 public class StudentGroup extends Group {
-
-	Teacher teacher;
-	Faculty faculty;
+	private Teacher teacher;
+	private Faculty faculty;
 
 	public StudentGroup(String groupName, Faculty faculty, Teacher teacher) {
 		super(groupName);
@@ -18,7 +17,7 @@ public class StudentGroup extends Group {
 		this.teacher = teacher;
 	}
 
-	public void addStudent(Person newStudent) {
+	public void addStudent(Student newStudent) {
 		addPerson(newStudent);
 	}
 
@@ -27,7 +26,8 @@ public class StudentGroup extends Group {
 	}
 
 	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
+		if (teacher != null)
+			this.teacher = teacher;
 	}
 
 	public Student getStudent(int index) {
@@ -40,6 +40,10 @@ public class StudentGroup extends Group {
 
 	public int getCurrentStudentsCount() {
 		return getCurrentPersonCount();
+	}
+
+	public void setFaculty(Faculty faculty) {
+		this.faculty = faculty;
 	}
 
 	public Faculty getFaculty() {

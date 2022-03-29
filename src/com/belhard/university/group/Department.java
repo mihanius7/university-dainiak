@@ -9,16 +9,16 @@ import com.belhard.university.util.AccountantUtil;
 import com.belhard.university.util.Money;
 
 public class Department extends Group {
-	Teacher manager;
-	Teacher managerDeputy;
-	Cleaner cleaner;
+	private Teacher manager;
+	private Teacher managerDeputy;
+	private Cleaner cleaner;
 
 	public Department(String name, Teacher manager) {
 		super(name);
 		this.manager = manager;
 	}
 
-	public void addTeacher(Person newTeacher) {
+	public void addTeacher(Teacher newTeacher) {
 		addPerson(newTeacher);
 	}
 

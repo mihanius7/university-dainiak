@@ -9,8 +9,8 @@ import com.belhard.university.datastructures.MyArray;
 public abstract class Group implements Identifiable {
 	private static long count = 1L;
 	protected long id;
-	String groupName;
-	final MyArray<Person> persons;
+	protected String groupName;
+	private final MyArray<Person> persons;
 	public static final int MAX_PERSONS_COUNT = 8;
 
 	public Group(String groupName) {
