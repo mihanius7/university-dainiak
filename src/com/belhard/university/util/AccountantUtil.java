@@ -2,11 +2,9 @@ package com.belhard.university.util;
 
 import java.math.BigDecimal;
 
-import com.belhard.Person;
 import com.belhard.university.Employee;
 import com.belhard.university.Student;
 import com.belhard.university.Teacher;
-import com.belhard.university.datastructures.MyArray;
 import com.belhard.university.group.Department;
 
 public class AccountantUtil {
@@ -76,11 +74,11 @@ public class AccountantUtil {
 	}
 
 	public static Money defineHolidayPay(Employee employee) {
-		return new Money(defineHolidayPayRatio(employee) * defineCurrentSalary(employee).getAmount().doubleValue());
+		return new Money(
+				defineHolidayPayRatio(employee) * defineCurrentSalary((Employee) employee).getAmount().doubleValue());
 	}
 
 	public static Money defineSalary(Department dep) {
-		MyArray persons = dep.getPersons();
 		int count = dep.getCurrentPersonCount();
 		BigDecimal totalSalary = BigDecimal.valueOf(0.0);
 		if (dep.getCleaner() != null)

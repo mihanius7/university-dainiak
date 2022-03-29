@@ -9,13 +9,14 @@ import com.belhard.university.datastructures.MyArray;
 public abstract class Group implements Identifiable {
 	private static long count = 1L;
 	protected long id;
-	String groupName;
-	final MyArray persons;
+	protected String groupName;
+	private final MyArray<Person> persons;
+	
 	public static final int MAX_PERSONS_COUNT = 8;
 
 	public Group(String groupName) {
 		this.groupName = groupName;
-		persons = new MyArray();
+		persons = new MyArray<Person>();
 		id = count++;
 	}
 
@@ -32,7 +33,7 @@ public abstract class Group implements Identifiable {
 			System.out.println(newPerson.getFirstName() + " wasn't added to group " + groupName + ". Group is full.");
 	}
 
-	public MyArray getPersons() {
+	public MyArray<Person> getPersons() {
 		return persons;
 	}
 
@@ -59,7 +60,7 @@ public abstract class Group implements Identifiable {
 	public String getInfo() {
 		String output = "";
 		int vacantPlaces = MAX_PERSONS_COUNT - getCurrentPersonCount();
-		output = output.concat("GROUP: " + groupName + ". Persons " + getCurrentPersonCount() + ", can accept "
+		output = output.concat(groupName + ": Persons " + getCurrentPersonCount() + ", can accept "
 				+ vacantPlaces + " persons. ");
 		return output;
 	}

@@ -1,7 +1,7 @@
 package com.belhard.university.datastructures;
 
-public class MyArray implements MyIterable {
-	Object[] array;
+public class MyArray<T> implements MyIterable<T> {
+	private Object[] array;
 	public static final int INITIAL_ARRAY_SIZE = 0;
 	public static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE;
 
@@ -10,7 +10,7 @@ public class MyArray implements MyIterable {
 		array = new Object[INITIAL_ARRAY_SIZE];
 	}
 
-	public MyArray(Object[] array) {
+	public MyArray(T[] array) {
 		super();
 		this.array = array;
 	}
@@ -21,7 +21,7 @@ public class MyArray implements MyIterable {
 	}
 
 	@Override
-	public boolean add(Object obj) {
+	public boolean add(T obj) {
 		if (!contains(obj) && array.length < MAX_ARRAY_SIZE && obj != null) {
 			Object[] newArray = new Object[array.length + 1];
 			newArray[newArray.length - 1] = obj;
@@ -34,7 +34,7 @@ public class MyArray implements MyIterable {
 	}
 
 	@Override
-	public boolean remove(Object obj) {
+	public boolean remove(T obj) {
 		boolean removed = false;
 		if (obj != null) {
 			for (int i = 0; i < array.length; i++) {
@@ -50,7 +50,7 @@ public class MyArray implements MyIterable {
 	}
 
 	@Override
-	public boolean contains(Object obj) {
+	public boolean contains(T obj) {
 		for (int i = 0; i < array.length; i++) {
 			if (array[i].equals(obj))
 				return true;
@@ -59,16 +59,16 @@ public class MyArray implements MyIterable {
 	}
 
 	@Override
-	public Object get(int index) {
+	public T get(int index) {
 		if (index >= 0 && index < array.length)
-			return array[index];
+			return (T) array[index];
 		return null;
 	}
 
 	@Override
-	public Object[] toArray() {
+	public T[] toArray() {
 		if (array.length != 0)
-			return array;
+			return (T[]) array;
 		return null;
 	}
 

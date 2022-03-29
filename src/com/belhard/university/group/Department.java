@@ -2,23 +2,22 @@ package com.belhard.university.group;
 
 import java.util.Objects;
 
-import com.belhard.Person;
 import com.belhard.university.Cleaner;
 import com.belhard.university.Teacher;
 import com.belhard.university.util.AccountantUtil;
 import com.belhard.university.util.Money;
 
 public class Department extends Group {
-	Teacher manager;
-	Teacher managerDeputy;
-	Cleaner cleaner;
+	private Teacher manager;
+	private Teacher managerDeputy;
+	private Cleaner cleaner;
 
 	public Department(String name, Teacher manager) {
 		super(name);
 		this.manager = manager;
 	}
 
-	public void addTeacher(Person newTeacher) {
+	public void addTeacher(Teacher newTeacher) {
 		addPerson(newTeacher);
 	}
 
@@ -31,7 +30,10 @@ public class Department extends Group {
 	}
 
 	public void setManager(Teacher manager) {
-		this.manager = manager;
+		if (manager != null) {
+			addTeacher(manager);
+			this.manager = manager;
+		}
 	}
 
 	public Teacher getManagerDeputy() {
@@ -39,7 +41,10 @@ public class Department extends Group {
 	}
 
 	public void setManagerDeputy(Teacher managerDeputy) {
-		this.managerDeputy = managerDeputy;
+		if (managerDeputy != null) {
+			addTeacher(managerDeputy);
+			this.managerDeputy = managerDeputy;
+		}
 	}
 
 	public Cleaner getCleaner() {
@@ -59,15 +64,12 @@ public class Department extends Group {
 		String output = "\n" + getInfo() + "\n";
 		for (int i = 0; i < getCurrentPersonCount(); i++) {
 			teacher = getTeacher(i);
-			if (teacher != null)
-				output = output.concat(teacher.toString() + "\n");
-			else
-				output = output.concat("null");
+			output = output.concat("TEACHER " + teacher.toString() + "\n");
 		}
-		output = output.concat("Manager is " + manager.getDegree().toString().toLowerCase() + " "
-				+ manager.getFirstName() + " " + manager.getLastName() + ". \n");
 		if (cleaner != null)
 			output = output.concat(cleaner.toString() + "\n");
+		output = output.concat("DEPARTMENT MANAGER " + manager.getDegree().toString().toLowerCase() + " "
+				+ manager.getFirstName() + " " + manager.getLastName() + ". \n");
 		output = output.concat("Total current salary: " + defineTotalSalary() + ". ");
 		return output;
 	}
