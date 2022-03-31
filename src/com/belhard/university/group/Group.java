@@ -5,13 +5,13 @@ import java.util.Objects;
 import com.belhard.Person;
 import com.belhard.university.Identifiable;
 import com.belhard.university.datastructures.MyArray;
+import com.belhard.university.datastructures.MyIterable;
 
 public abstract class Group implements Identifiable {
 	private static long count = 1L;
 	protected long id;
 	protected String groupName;
-	private final MyArray<Person> persons;
-	
+	private final MyIterable<Person> persons;
 	public static final int MAX_PERSONS_COUNT = 8;
 
 	public Group(String groupName) {
@@ -33,7 +33,7 @@ public abstract class Group implements Identifiable {
 			System.out.println(newPerson.getFirstName() + " wasn't added to group " + groupName + ". Group is full.");
 	}
 
-	public MyArray<Person> getPersons() {
+	public MyIterable<Person> getPersons() {
 		return persons;
 	}
 
