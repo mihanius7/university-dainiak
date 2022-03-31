@@ -46,7 +46,7 @@ public abstract class Group implements Identifiable {
 	}
 
 	public Person getPerson(int index) {
-		return (Person) persons.get(index);
+		return persons.get(index);
 	}
 
 	public boolean hasPerson(Person person) {
@@ -77,7 +77,7 @@ public abstract class Group implements Identifiable {
 		int result = (int) id;
 		result = 31 * result + (groupName == null ? 0 : groupName.hashCode());
 		result = 31 * result + getCurrentPersonCount();
-		result = 31 * result + (persons == null ? 0 : persons.hashCode());
+		result = 31 * result + persons.hashCode();
 		return result;
 	}
 
@@ -91,7 +91,7 @@ public abstract class Group implements Identifiable {
 			return false;
 		Group other = (Group) obj;
 		return id == other.id && Objects.equals(persons, other.persons)
-				&& Objects.equals(groupName, other.groupName) && Objects.equals(persons, other.persons);
+				&& Objects.equals(groupName, other.groupName);
 	}
 
 }
