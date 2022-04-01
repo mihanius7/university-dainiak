@@ -2,6 +2,7 @@ package com.belhard.university.group;
 
 import java.util.Objects;
 
+import com.belhard.Person;
 import com.belhard.university.Faculty;
 import com.belhard.university.Student;
 import com.belhard.university.Teacher;
@@ -51,21 +52,15 @@ public class StudentGroup extends Group {
 
 	public double defineAverageMark() {
 		double averageMark = 0;
-		for (int i = 0; i < getCurrentPersonCount(); i++)
-			averageMark += (getStudent(i)).getAverageMark() / getCurrentPersonCount();
+		for (Person student : persons)
+			averageMark += ((Student) student).getAverageMark() / getCurrentPersonCount();
 		return averageMark;
 	}
 
 	public String toList() {
-		Student student;
 		String output = "\n" + getInfo() + "\n";
-		for (int i = 0; i < getCurrentPersonCount(); i++) {
-			student = getStudent(i);
-			if (student != null)
+		for (Person student : persons)
 				output = output.concat(student.toString() + "\n");
-			else
-				output = output.concat("null");
-		}
 		output = output.concat("Average mark: " + String.format("%.2f", defineAverageMark()) + ". ");
 		return output;
 	}
