@@ -17,7 +17,7 @@ public abstract class Group implements Identifiable {
 
 	public Group(String groupName) {
 		this.groupName = groupName;
-		persons = new ArrayList<Person>(0);
+		persons = new ArrayList<>(0);
 		id = count++;
 	}
 
