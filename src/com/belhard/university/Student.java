@@ -5,6 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 import com.belhard.Person;
+import com.belhard.university.exception.AgeUndefinedException;
 
 public class Student extends Person {
     private Faculty faculty;
@@ -59,9 +60,15 @@ public class Student extends Person {
 
     @Override
     public String introduceYourself() {
+        int age = 0;
+        try {
+            age = defineAge();
+        } catch (AgeUndefinedException e) {
+            e.printStackTrace();
+        }
         return String.format(
                 "Hi! My name is %s. I am %d years old and I'm a student %nof %s faculty on %d-th year of study. My average mark is %.1f.%n", firstName,
-                defineAge(), faculty.toString().toLowerCase(), defineYearOfStudy(), averageMark);
+                age, faculty.toString().toLowerCase(), defineYearOfStudy(), averageMark);
     }
 
     @Override

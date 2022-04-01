@@ -2,6 +2,7 @@ package com.belhard.university;
 
 import java.util.Objects;
 
+import com.belhard.university.exception.AgeUndefinedException;
 import com.belhard.university.util.AccountantUtil;
 import com.belhard.university.util.Money;
 
@@ -63,14 +64,20 @@ public class Teacher extends Employee {
         Money currentSalary = AccountantUtil.defineCurrentSalary(this);
         Money holidayPay = AccountantUtil.defineHolidayPay(this);
         output = output.concat("Salary: current " + currentSalary + ", holiday pay " + holidayPay);
-        output = output.concat(getSubjectsString());
+        output = output.concat("\nSubjects: " + getSubjectsString());
         return output;
     }
 
     @Override
     public String introduceYourself() {
+        int age = 0;
+        try {
+            age = defineAge();
+        } catch (AgeUndefinedException e) {
+            e.printStackTrace();
+        }
         return String.format("Hello! My name is %s %s. I am %d years old. I am a %s. %nI am teaching %s%n",
-                firstName, lastName, defineAge(), degree.toString().toLowerCase(), getSubjectsString());
+                firstName, lastName, age, degree.toString().toLowerCase(), getSubjectsString());
     }
 
     @Override

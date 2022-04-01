@@ -5,6 +5,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
 import com.belhard.university.Identifiable;
+import com.belhard.university.exception.AgeUndefinedException;
 
 public abstract class Person implements Identifiable {
     private static long count = 1L;
@@ -60,11 +61,11 @@ public abstract class Person implements Identifiable {
         return firstName + " " + lastName + " was born in " + dateOfBirth;
     }
 
-    public int defineAge() {
+    public int defineAge() throws AgeUndefinedException {
         if (dateOfBirth != null)
             return (int) ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
         else
-            return 0;
+            throw new AgeUndefinedException(this);
     }
 
     public abstract String introduceYourself();
@@ -72,9 +73,13 @@ public abstract class Person implements Identifiable {
     @Override
     public String toString() {
         String output = "[" + id + "] " + firstName.toUpperCase() + " " + lastName.toUpperCase() + ". ";
-        int age = defineAge();
-        if (age > 0)
-            output = output.concat(defineAge() + " years old. ");
+        int age = 0;
+        try {
+            age = defineAge();
+        } catch (AgeUndefinedException e) {
+            e.printStackTrace();
+        }
+        output = output.concat(age + " years old. ");
         if (address != null)
             output = output.concat(address.toString());
         return output;

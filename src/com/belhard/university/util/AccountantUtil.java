@@ -29,7 +29,7 @@ public class AccountantUtil {
         try {
             seniority = employee.defineSeniorityYears();
         } catch (SeniorityUndefinedException e) {
-            System.err.println(e.toString());
+            e.printStackTrace();
         }
         bonusRatio = Math.pow(SENIORITY_BONUS_YEAR_FACTOR, seniority);
         if (bonusRatio > SENIORITY_MAX_BONUS_RATIO) {

@@ -2,6 +2,7 @@ package com.belhard.university;
 
 import java.util.Objects;
 
+import com.belhard.university.exception.AgeUndefinedException;
 import com.belhard.university.util.AccountantUtil;
 import com.belhard.university.util.Money;
 
@@ -50,16 +51,21 @@ public class Cleaner extends Employee {
 
 	@Override
 	public String introduceYourself() {
-		String output = String.format(
+		int age = 0;
+		try {
+			age = defineAge();
+		} catch (AgeUndefinedException e) {
+			e.printStackTrace();
+		}
+		return String.format(
 				"Hello! My name is %s. I am %d years old. Now I'm a cleaner. I like %nmy work because I have free mind and can to listen podcasts simultaneously. %nI must clean the folowing rooms: %s%n",
-				firstName, defineAge(), getRoomsForCleaningString().toLowerCase());
-		return output;
+				firstName, age, getRoomsForCleaningString().toLowerCase());
 	}
 
 	@Override
 	public int hashCode() {
-		int result = (int) id;
-		result = 31 * result + defineAge();
+		int result = super.hashCode();
+		result = 31 * result;
 		result = 31 * result + (firstName == null ? 0 : firstName.hashCode());
 		result = 31 * result + (lastName == null ? 0 : lastName.hashCode());
 		return result;
