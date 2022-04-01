@@ -1,5 +1,6 @@
 package com.belhard.university.group;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 import com.belhard.Person;
@@ -11,12 +12,12 @@ public abstract class Group implements Identifiable {
 	private static long count = 1L;
 	protected long id;
 	protected String groupName;
-	private final MyIterable<Person> persons;
+	private final ArrayList<Person> persons;
 	public static final int MAX_PERSONS_COUNT = 8;
 
 	public Group(String groupName) {
 		this.groupName = groupName;
-		persons = new MyArray<Person>();
+		persons = new ArrayList<Person>(0);
 		id = count++;
 	}
 
@@ -33,7 +34,7 @@ public abstract class Group implements Identifiable {
 			System.out.println(newPerson.getFirstName() + " wasn't added to group " + groupName + ". Group is full.");
 	}
 
-	public MyIterable<Person> getPersons() {
+	public ArrayList<Person> getPersons() {
 		return persons;
 	}
 
