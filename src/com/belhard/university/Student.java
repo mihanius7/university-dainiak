@@ -60,8 +60,8 @@ public class Student extends Person {
     @Override
     public String introduceYourself() {
         return String.format(
-                "Hi! My name is %s. I am %d years old and I'm a student %nof %s faculty on %d-th year of study.%n", firstName,
-                defineAge(), faculty.toString().toLowerCase(), defineYearOfStudy());
+                "Hi! My name is %s. I am %d years old and I'm a student %nof %s faculty on %d-th year of study. My average mark is %.1f.%n", firstName,
+                defineAge(), faculty.toString().toLowerCase(), defineYearOfStudy(), averageMark);
     }
 
     @Override
