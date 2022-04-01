@@ -72,15 +72,11 @@ public abstract class Person implements Identifiable {
     @Override
     public String toString() {
         String output = "[" + id + "] " + firstName.toUpperCase() + " " + lastName.toUpperCase() + ". ";
-        int age = (int) defineAge();
+        int age = defineAge();
         if (age > 0)
             output = output.concat(defineAge() + " years old. ");
-        else
-            output = output.concat("Age undefined. ");
         if (address != null)
             output = output.concat(address.toString());
-        else
-            output = output.concat("Adress undefined. ");
         return output;
     }
 

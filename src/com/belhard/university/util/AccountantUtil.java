@@ -6,6 +6,7 @@ import com.belhard.Person;
 import com.belhard.university.Employee;
 import com.belhard.university.Student;
 import com.belhard.university.Teacher;
+import com.belhard.university.exception.SeniorityUndefinedException;
 import com.belhard.university.group.Department;
 
 public class AccountantUtil {
@@ -23,9 +24,17 @@ public class AccountantUtil {
     public final static double SCHOLARSHIP_AVERAGE_MARK_FACTOR = 1.1;
 
     private static double defineSeniorityBonusRatio(Employee employee) {
-        double bonusRatio = Math.pow(SENIORITY_BONUS_YEAR_FACTOR, employee.defineSeniorityYears());
-        if (bonusRatio > SENIORITY_MAX_BONUS_RATIO)
+        double bonusRatio;
+        long seniority = 0;
+        try {
+            seniority = employee.defineSeniorityYears();
+        } catch (SeniorityUndefinedException e) {
+            System.err.println(e.toString());
+        }
+        bonusRatio = Math.pow(SENIORITY_BONUS_YEAR_FACTOR, seniority);
+        if (bonusRatio > SENIORITY_MAX_BONUS_RATIO) {
             bonusRatio = SENIORITY_MAX_BONUS_RATIO;
+        }
         return bonusRatio;
     }
 
@@ -48,7 +57,7 @@ public class AccountantUtil {
                     break;
                 default:
                     System.out.println(
-                            "Degree pupplement for " + teacher.getFirstName() + teacher.getLastName() + "is not defined.");
+                            "Degree supplement for " + teacher.getFirstName() + teacher.getLastName() + "is not defined.");
                     break;
             }
         }
@@ -76,7 +85,7 @@ public class AccountantUtil {
 
     public static Money defineHolidayPay(Employee employee) {
         return new Money(
-                defineHolidayPayRatio(employee) * defineCurrentSalary((Employee) employee).getAmount().doubleValue());
+                defineHolidayPayRatio(employee) * defineCurrentSalary(employee).getAmount().doubleValue());
     }
 
     public static Money defineSalary(Department dep) {
