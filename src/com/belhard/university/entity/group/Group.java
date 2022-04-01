@@ -1,13 +1,11 @@
-package com.belhard.university.group;
+package com.belhard.university.entity.group;
+
+import com.belhard.university.entity.Identifiable;
+import com.belhard.university.entity.person.Person;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import com.belhard.Person;
-import com.belhard.university.Identifiable;
-import com.belhard.university.datastructures.MyArray;
-import com.belhard.university.datastructures.MyIterable;
 
 public abstract class Group implements Identifiable {
     private static long count = 1L;
@@ -22,17 +20,17 @@ public abstract class Group implements Identifiable {
         id = count++;
     }
 
-    public void addPerson(Person newPerson) {
-        if (persons.size() < MAX_PERSONS_COUNT) {
-            if (newPerson != null)
-                if (!this.hasPerson(newPerson))
-                    persons.add(newPerson);
-                else
-                    System.out.println(newPerson.getFirstName() + " is already in group " + groupName);
-            else
-                System.out.println("Can't add 'null' person!");
-        } else
-            System.out.println(newPerson.getFirstName() + " wasn't added to group " + groupName + ". Group is full.");
+    public void addPerson(Person person) {
+        if (person == null) {
+            throw new RuntimeException("Can't add 'null' person!");
+        }
+        if (persons.size() >= MAX_PERSONS_COUNT) {
+            throw new RuntimeException(person.getFirstName() + " wasn't added to group " + groupName + ". Group is full.");
+        }
+        if (persons.contains(person)) {
+            throw new RuntimeException(person.getFirstName() + " is already in group " + groupName);
+        }
+        persons.add(person);
     }
 
     public List<Person> getPersons() {

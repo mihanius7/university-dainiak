@@ -1,19 +1,18 @@
-package com.belhard.university;
+package com.belhard.university.entity.person;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
-import com.belhard.Person;
+import com.belhard.university.entity.person.auxiliary.Money;
 import com.belhard.university.exception.SeniorityUndefinedException;
 import com.belhard.university.util.AccountantUtil;
-import com.belhard.university.util.Currency;
 import com.belhard.university.util.CurrencyUtil;
-import com.belhard.university.util.Money;
 
 public abstract class Employee extends Person {
     private LocalDate workingStartDate;
-    Money baseSalary = new Money(AccountantUtil.MIN_SALARY_USD, Currency.USD);
+    private final Money baseSalary = new Money(BigDecimal.ZERO, Money.Currency.USD);
 
     public Employee(String firstName, String lastName, int yearOfBirth, int monthOfBirth, int dayOfBirth) {
         super(firstName, lastName, yearOfBirth, monthOfBirth, dayOfBirth);
@@ -43,10 +42,10 @@ public abstract class Employee extends Person {
     }
 
     public void setBaseSalary(Money newSalary) {
-        if (newSalary.getCurrency() != Currency.USD) {
+        if (newSalary.getCurrency() != Money.Currency.USD) {
             newSalary.setAmount(CurrencyUtil.convertToUSD(newSalary));
         }
-        if (newSalary.getAmount().doubleValue() >= AccountantUtil.MIN_SALARY_USD)
+        if (newSalary.getAmount().compareTo(AccountantUtil.MIN_SALARY_USD) >= 0)
             this.baseSalary.setAmount(newSalary);
         else
             System.out.println("Base salary not changed. ");

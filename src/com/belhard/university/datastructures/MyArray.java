@@ -1,6 +1,6 @@
 package com.belhard.university.datastructures;
 
-public class MyArray<T> implements MyIterable<T> {
+public class MyArray<T> implements List<T> {
 	private Object[] array;
 	public static final int INITIAL_ARRAY_SIZE = 0;
 	public static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE;

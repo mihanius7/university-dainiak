@@ -2,12 +2,13 @@ package com.belhard.university.util;
 
 import java.math.BigDecimal;
 
-import com.belhard.Person;
-import com.belhard.university.Employee;
-import com.belhard.university.Student;
-import com.belhard.university.Teacher;
+import com.belhard.university.entity.person.auxiliary.Money;
+import com.belhard.university.entity.person.Person;
+import com.belhard.university.entity.person.Employee;
+import com.belhard.university.entity.person.Student;
+import com.belhard.university.entity.person.Teacher;
 import com.belhard.university.exception.SeniorityUndefinedException;
-import com.belhard.university.group.Department;
+import com.belhard.university.entity.group.Department;
 
 public class AccountantUtil {
     public static final double MIN_SALARY_USD = 250;
@@ -24,14 +25,13 @@ public class AccountantUtil {
     public final static double SCHOLARSHIP_AVERAGE_MARK_FACTOR = 1.1;
 
     private static double defineSeniorityBonusRatio(Employee employee) {
-        double bonusRatio;
         long seniority = 0;
         try {
             seniority = employee.defineSeniorityYears();
         } catch (SeniorityUndefinedException e) {
             e.printStackTrace();
         }
-        bonusRatio = Math.pow(SENIORITY_BONUS_YEAR_FACTOR, seniority);
+        double bonusRatio = Math.pow(SENIORITY_BONUS_YEAR_FACTOR, seniority);
         if (bonusRatio > SENIORITY_MAX_BONUS_RATIO) {
             bonusRatio = SENIORITY_MAX_BONUS_RATIO;
         }
@@ -43,35 +43,28 @@ public class AccountantUtil {
     }
 
     private static double defineDegreeSupplementRatio(Teacher teacher) {
-        double supplementRatio = 0;
-        if (teacher.getDegree() != null) {
-            switch (teacher.getDegree()) {
-                case MASTER:
-                    supplementRatio = MASTER_DEGREE_SUPPLEMENT;
-                    break;
-                case DOCTOR:
-                    supplementRatio = DOCTOR_DEGREE_SUPPLEMENT;
-                    break;
-                case PROFESSOR:
-                    supplementRatio = PROFESSOR_DEGREE_SUPPLEMENT;
-                    break;
-                default:
-                    System.out.println(
-                            "Degree supplement for " + teacher.getFirstName() + teacher.getLastName() + "is not defined.");
-                    break;
-            }
+        if (teacher.getDegree() == null) {
+            return 0;
         }
-        return supplementRatio;
+        switch (teacher.getDegree()) {
+            case MASTER:
+                return MASTER_DEGREE_SUPPLEMENT;
+            case DOCTOR:
+                return DOCTOR_DEGREE_SUPPLEMENT;
+            case PROFESSOR:
+                return PROFESSOR_DEGREE_SUPPLEMENT;
+            default:
+                throw new RuntimeException("Degree supplement for " + teacher.getFirstName() + teacher.getLastName() + "is not defined.");
+        }
     }
 
     private static double defineScholarshipRatio(Student student) {
-        if (student.getAverageMark() >= SCHOLARSHIP_MIN_AVERAGE_MARK)
-            return (SCHOLARSHIP_AVERAGE_MARK_FACTOR) * (student.getAverageMark() - SCHOLARSHIP_MIN_AVERAGE_MARK);
-        return 0;
+        return student.getAverageMark() >= SCHOLARSHIP_MIN_AVERAGE_MARK ?
+           (SCHOLARSHIP_AVERAGE_MARK_FACTOR) * (student.getAverageMark() - SCHOLARSHIP_MIN_AVERAGE_MARK) : 0;
     }
 
     public static Money defineCurrentSalary(Employee employee) {
-        return new Money(employee.getBaseSalary().getAmount().doubleValue() * defineSeniorityBonusRatio(employee));
+        return new Money(employee.getBaseSalary().getAmount() * defineSeniorityBonusRatio(employee));
     }
 
     public static Money defineCurrentSalary(Teacher teacher) {
@@ -94,7 +87,7 @@ public class AccountantUtil {
             totalSalary = defineCurrentSalary(dep.getCleaner()).getAmount();
         for (Person person : dep.getPersons())
             totalSalary = totalSalary.add(defineCurrentSalary((Teacher) person).getAmount());
-        return new Money(totalSalary, Currency.USD);
+        return new Money(totalSalary, Money.Currency.USD);
     }
 
 }

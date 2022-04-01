@@ -2,11 +2,14 @@ package com.belhard.university;
 
 import java.time.LocalDate;
 
-import com.belhard.Address;
-import com.belhard.university.group.Department;
-import com.belhard.university.group.StudentGroup;
-import com.belhard.university.util.Currency;
-import com.belhard.university.util.Money;
+import com.belhard.university.entity.person.auxiliary.Address;
+import com.belhard.university.entity.person.Cleaner;
+import com.belhard.university.entity.person.auxiliary.Faculty;
+import com.belhard.university.entity.person.Student;
+import com.belhard.university.entity.person.Teacher;
+import com.belhard.university.entity.group.Department;
+import com.belhard.university.entity.group.StudentGroup;
+import com.belhard.university.entity.person.auxiliary.Money;
 
 public class Task1 {
 
@@ -14,19 +17,19 @@ public class Task1 {
 		
 		//Departments
 		Teacher teacher1 = new Teacher("Harry", "Lemetre");
-		teacher1.setDegree(AcademicDegree.DOCTOR);
+		teacher1.setDegree(Teacher.AcademicDegree.DOCTOR);
 		teacher1.setDateOfBirth(LocalDate.of(1960, 4, 15));
 		teacher1.setWorkingStartDate(1987, 9, 1);
 		teacher1.setAddress(new Address("Italy", "Rome", "via Nazionale", 13));
 		teacher1.setSubjects(new String[] { "Astrophysics", "Physics", "Cosmology" });
 		teacher1.setBaseSalary(new Money(450));
 		Teacher teacher2 = new Teacher("Edwin", "Hubble");
-		teacher2.setDegree(AcademicDegree.PROFESSOR);
+		teacher2.setDegree(Teacher.AcademicDegree.PROFESSOR);
 		teacher2.setWorkingStartDate(1983, 10, 2);
 		teacher2.setSubjects(new String[] { "Math", "Astrophysics", "Physics", "Earth remote sensing" });
 		teacher2.setBaseSalary(new Money(450));
 		Teacher teacher3 = new Teacher("Ludwig", "Alaskin");
-		teacher3.setDegree(AcademicDegree.MASTER);
+		teacher3.setDegree(Teacher.AcademicDegree.MASTER);
 		teacher3.setDateOfBirth(LocalDate.of(1985, 7, 11));
 		teacher3.setWorkingStartDate(2010, 1, 10);
 		teacher3.setSubjects(new String[] { "Math", "Computer science"});
@@ -35,7 +38,7 @@ public class Task1 {
 		cleaner1.setDateOfBirth(LocalDate.of(1990, 8, 7));
 		cleaner1.setRoomsForCleaning(new String[] {"303", "304-1", "304-2", "223", "225", "227"});
 		cleaner1.setWorkingStartDate(2018, 8, 15);
-		cleaner1.setBaseSalary(new Money(240, Currency.EUR));		
+		cleaner1.setBaseSalary(new Money(240, Money.Currency.EUR));
 		Department department1 = new Department("Astrophysics and Theoretical Physics", teacher2);
 		department1.addTeacher(teacher1);
 		System.out.println(department1.toList());

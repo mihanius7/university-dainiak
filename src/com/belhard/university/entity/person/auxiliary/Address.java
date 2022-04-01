@@ -1,4 +1,4 @@
-package com.belhard;
+package com.belhard.university.entity.person.auxiliary;
 
 import java.util.Objects;
 

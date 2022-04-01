@@ -1,10 +1,10 @@
-package com.belhard.university;
+package com.belhard.university.entity.person;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
-import com.belhard.Person;
+import com.belhard.university.entity.person.auxiliary.Faculty;
 import com.belhard.university.exception.AgeUndefinedException;
 
 public class Student extends Person {
@@ -33,10 +33,12 @@ public class Student extends Person {
     }
 
     public void setAverageMark(double averageMark) {
-        if (averageMark >= 0 && averageMark <= 10)
+        if (averageMark >= 0 && averageMark <= 10) {
             this.averageMark = averageMark;
-        else
-            System.out.println("Mark " + averageMark + " isn't valid. Current average mark " + this.averageMark);
+        } else {
+            throw new RuntimeException("Mark " + averageMark + " isn't valid. Current average mark " + this.averageMark);
+//            System.out.println("Mark " + averageMark + " isn't valid. Current average mark " + this.averageMark);
+        }
     }
 
     public void setStudyStartDate(int year, int month, int day) {
@@ -47,7 +49,7 @@ public class Student extends Person {
         if (studyStartDate != null)
             return ChronoUnit.YEARS.between(studyStartDate, LocalDate.now()) + 1;
         else
-            return -1;
+            return -1;//FIXME throw
     }
 
     @Override
@@ -67,7 +69,7 @@ public class Student extends Person {
             e.printStackTrace();
         }
         return String.format(
-                "Hi! My name is %s. I am %d years old and I'm a student %nof %s faculty on %d-th year of study. My average mark is %.1f.%n", firstName,
+                "Hi! My name is %s. I am %d years old and I'm a student %nof %s faculty on %d-th year of study. My average mark is %.1f.%n", getFirstName(),
                 age, faculty.toString().toLowerCase(), defineYearOfStudy(), averageMark);
     }
 

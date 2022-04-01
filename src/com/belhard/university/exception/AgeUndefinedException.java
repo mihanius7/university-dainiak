@@ -1,8 +1,8 @@
 package com.belhard.university.exception;
 
-import com.belhard.Person;
+import com.belhard.university.entity.person.Person;
 
-public class AgeUndefinedException extends Exception {
+public class AgeUndefinedException extends RuntimeException {
     private final Person person;
 
     public AgeUndefinedException(Person person) {

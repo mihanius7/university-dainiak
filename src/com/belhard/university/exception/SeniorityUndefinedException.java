@@ -1,6 +1,6 @@
 package com.belhard.university.exception;
 
-import com.belhard.Person;
+import com.belhard.university.entity.person.Person;
 
 public class SeniorityUndefinedException extends Exception {
     private final Person person;

@@ -1,4 +1,4 @@
-package com.belhard.university.util;
+package com.belhard.university.entity.person.auxiliary;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -13,12 +13,7 @@ public class Money {
 		this.currency = currency;
 	}
 
-	public Money(double amount, Currency currency) {
-		this.amount = BigDecimal.valueOf(amount);
-		this.currency = currency;
-	}
-
-	public Money(double amount) {
+	public Money(BigDecimal amount) {
 		this(amount, Currency.USD);
 	}
 
@@ -68,4 +63,7 @@ public class Money {
 		return Objects.equals(amount, other.amount) && Objects.equals(currency, other.currency);
 	}
 
+	public enum Currency {
+		USD, BYN, RUR, EUR
+	}
 }

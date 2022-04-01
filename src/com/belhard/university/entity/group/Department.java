@@ -1,12 +1,12 @@
-package com.belhard.university.group;
+package com.belhard.university.entity.group;
 
 import java.util.Objects;
 
-import com.belhard.Person;
-import com.belhard.university.Cleaner;
-import com.belhard.university.Teacher;
+import com.belhard.university.entity.person.Person;
+import com.belhard.university.entity.person.Cleaner;
+import com.belhard.university.entity.person.Teacher;
 import com.belhard.university.util.AccountantUtil;
-import com.belhard.university.util.Money;
+import com.belhard.university.entity.person.auxiliary.Money;
 
 public class Department extends Group {
     private Teacher manager;

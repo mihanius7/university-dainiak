@@ -1,10 +1,10 @@
-package com.belhard.university;
+package com.belhard.university.entity.person;
 
 import java.util.Objects;
 
+import com.belhard.university.entity.person.auxiliary.Money;
 import com.belhard.university.exception.AgeUndefinedException;
 import com.belhard.university.util.AccountantUtil;
-import com.belhard.university.util.Money;
 
 public class Teacher extends Employee {
     private String department;
@@ -102,4 +102,7 @@ public class Teacher extends Employee {
                 && Objects.equals(subjects, other.subjects);
     }
 
+    public enum AcademicDegree {
+        MASTER, DOCTOR, PROFESSOR
+    }
 }

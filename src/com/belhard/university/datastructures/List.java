@@ -1,6 +1,6 @@
 package com.belhard.university.datastructures;
 
-public interface MyIterable<E> {
+public interface List<E> {
 	int size();
 
 	boolean add(E obj);

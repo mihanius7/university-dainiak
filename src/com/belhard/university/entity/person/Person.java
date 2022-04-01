@@ -1,18 +1,20 @@
-package com.belhard;
+package com.belhard.university.entity.person;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.Objects;
 
-import com.belhard.university.Identifiable;
+import com.belhard.university.entity.Identifiable;
+import com.belhard.university.entity.person.auxiliary.Address;
 import com.belhard.university.exception.AgeUndefinedException;
 
 public abstract class Person implements Identifiable {
     private static long count = 1L;
-    protected long id;
-    protected String firstName, lastName;
-    LocalDate dateOfBirth;
-    Address address;
+    private final Long id;
+    private final String firstName;
+    private String lastName;
+    private LocalDate dateOfBirth;
+    private Address address;
 
     public Person(String firstName, String lastName) {
         this.firstName = firstName;
@@ -61,11 +63,12 @@ public abstract class Person implements Identifiable {
         return firstName + " " + lastName + " was born in " + dateOfBirth;
     }
 
-    public int defineAge() throws AgeUndefinedException {
-        if (dateOfBirth != null)
+    public int defineAge() throws AgeUndefinedException {//FIXME move to util
+        if (dateOfBirth != null) {
             return (int) ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
-        else
+        } else {
             throw new AgeUndefinedException(this);
+        }
     }
 
     public abstract String introduceYourself();
@@ -73,21 +76,18 @@ public abstract class Person implements Identifiable {
     @Override
     public String toString() {
         String output = "[" + id + "] " + firstName.toUpperCase() + " " + lastName.toUpperCase() + ". ";
-        int age = 0;
-        try {
-            age = defineAge();
-        } catch (AgeUndefinedException e) {
-            e.printStackTrace();
+        if (dateOfBirth != null) {
+            output += defineAge() + " years old. ";
         }
-        output = output.concat(age + " years old. ");
-        if (address != null)
-            output = output.concat(address.toString());
+        if (address != null) {
+            output += address;
+        }
         return output;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) id;
+        int result = id.intValue();
         result = 31 * result + (dateOfBirth == null ? 0 : dateOfBirth.hashCode());
         result = 31 * result + (address == null ? 0 : address.hashCode());
         result = 31 * result + (firstName == null ? 0 : firstName.hashCode());
@@ -104,7 +104,7 @@ public abstract class Person implements Identifiable {
         if (getClass() != obj.getClass())
             return false;
         Person other = (Person) obj;
-        return id == other.id && Objects.equals(dateOfBirth, other.dateOfBirth)
+        return Objects.equals(id, other.id) && Objects.equals(dateOfBirth, other.dateOfBirth)
                 && Objects.equals(firstName, other.firstName) && Objects.equals(lastName, other.lastName)
                 && Objects.equals(address, other.address);
     }
