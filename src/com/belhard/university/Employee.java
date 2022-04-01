@@ -31,9 +31,9 @@ public abstract class Employee extends Person {
         this.workingStartDate = LocalDate.of(year, month, day);
     }
 
-    public long defineSeniorityYears() throws SeniorityUndefinedException {
+    public int defineSeniorityYears() throws SeniorityUndefinedException {
         if (workingStartDate != null)
-            return ChronoUnit.YEARS.between(workingStartDate, LocalDate.now());
+            return (int) ChronoUnit.YEARS.between(workingStartDate, LocalDate.now());
         else
             throw new SeniorityUndefinedException(this);
     }
