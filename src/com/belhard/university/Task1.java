@@ -28,7 +28,7 @@ public class Task1 {
 		Teacher teacher3 = new Teacher("Ludwig", "Alaskin");
 		teacher3.setDegree(AcademicDegree.MASTER);
 		teacher3.setDateOfBirth(LocalDate.of(1985, 7, 11));
-		teacher3.setWorkingStartDate(2010, 01, 10);
+		teacher3.setWorkingStartDate(2010, 1, 10);
 		teacher3.setSubjects(new String[] { "Math", "Computer science"});
 		teacher3.setBaseSalary(new Money(330));		
 		Cleaner cleaner1 = new Cleaner("Timmy", "Bear");
@@ -39,7 +39,6 @@ public class Task1 {
 		Department department1 = new Department("Astrophysics and Theoretical Physics", teacher2);
 		department1.addTeacher(teacher1);
 		System.out.println(department1.toList());
-		department1.addTeacher(teacher2);
 		department1.addTeacher(teacher3);
 		department1.setCleaner(cleaner1);
 		System.out.println(department1.toList());

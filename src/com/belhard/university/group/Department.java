@@ -15,7 +15,7 @@ public class Department extends Group {
 
     public Department(String name, Teacher manager) {
         super(name);
-        this.manager = manager;
+        setManager(manager);
     }
 
     public void addTeacher(Teacher newTeacher) {
@@ -32,8 +32,8 @@ public class Department extends Group {
 
     public void setManager(Teacher manager) {
         if (manager != null) {
-            addTeacher(manager);
             this.manager = manager;
+            addTeacher(this.manager);
         }
     }
 
