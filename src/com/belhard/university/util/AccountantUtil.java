@@ -11,7 +11,7 @@ import com.belhard.university.exception.SeniorityUndefinedException;
 import com.belhard.university.entity.group.Department;
 
 public class AccountantUtil {
-    public final static BigDecimal MIN_SALARY_USD = BigDecimal.valueOf(250);
+    public final static BigDecimal MIN_SALARY_USD = BigDecimal.valueOf(75);
     public final static BigDecimal SENIORITY_BONUS_YEAR_FACTOR = BigDecimal.valueOf(1.07);
     public final static BigDecimal SENIORITY_MAX_BONUS_RATIO = BigDecimal.valueOf(2.5);
     public final static BigDecimal HOLIDAY_PAY_RATIO = BigDecimal.valueOf(2.5);
@@ -69,8 +69,8 @@ public class AccountantUtil {
     }
 
     public static Money defineCurrentSalary(Teacher teacher) {
-        BigDecimal degreeSupplement = teacher.getBaseSalary().getAmount().multiply(defineDegreeSupplementRatio(teacher));
-        return new Money(defineCurrentSalary((Employee) teacher).getAmount().add(degreeSupplement));
+        BigDecimal asEmployeeSalary = defineCurrentSalary((Employee) teacher).getAmount();
+        return new Money(asEmployeeSalary.multiply(defineDegreeSupplementRatio(teacher)));
     }
 
     public static BigDecimal defineScholarship(Student student) {
