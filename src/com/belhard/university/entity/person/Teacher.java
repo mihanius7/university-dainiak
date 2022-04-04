@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.belhard.university.entity.person.auxiliary.Money;
 import com.belhard.university.exception.AgeUndefinedException;
 import com.belhard.university.util.AccountantUtil;
+import com.belhard.university.util.AgeUtil;
 
 public class Teacher extends Employee {
     private String department;
@@ -60,21 +61,21 @@ public class Teacher extends Employee {
     @Override
     public String toString() {
         String output = (degree != null) ? degree.toString().toLowerCase() + " " : "";
-        output = output.concat(super.toString());
+        output += super.toString();
         Money currentSalary = AccountantUtil.defineCurrentSalary(this);
         Money holidayPay = AccountantUtil.defineHolidayPay(this);
-        output = output.concat("Salary: current " + currentSalary + ", holiday pay " + holidayPay);
-        output = output.concat("\nSubjects: " + getSubjectsString());
+        output += "Salary: current " + currentSalary + ", holiday pay " + holidayPay;
+        output += "\nSubjects: " + getSubjectsString();
         return output;
     }
 
     @Override
     public String introduceYourself() {
-        int age = 0;
+        int age;
         try {
-            age = defineAge();
+            age = AgeUtil.defineAge(this);
         } catch (AgeUndefinedException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Age undefined, id: [" + id + "] " + getFirstName() + " " + getLastName());
         }
         return String.format("Hello! My name is %s %s. I am %d years old. I am a %s. %nI am teaching %s%n",
                 firstName, lastName, age, degree.toString().toLowerCase(), getSubjectsString());

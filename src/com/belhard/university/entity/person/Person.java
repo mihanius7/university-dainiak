@@ -7,12 +7,13 @@ import java.util.Objects;
 import com.belhard.university.entity.Identifiable;
 import com.belhard.university.entity.person.auxiliary.Address;
 import com.belhard.university.exception.AgeUndefinedException;
+import com.belhard.university.util.AgeUtil;
 
 public abstract class Person implements Identifiable {
     private static long count = 1L;
-    private final Long id;
-    private final String firstName;
-    private String lastName;
+    final Long id;
+    final String firstName;
+    String lastName;
     private LocalDate dateOfBirth;
     private Address address;
 
@@ -55,20 +56,12 @@ public abstract class Person implements Identifiable {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setDateOfBirth(int year, int month, int day) {
+        this.dateOfBirth = LocalDate.of(year, month, day);
     }
 
     public String getDateOfBirthString() {
         return firstName + " " + lastName + " was born in " + dateOfBirth;
-    }
-
-    public int defineAge() throws AgeUndefinedException {//FIXME move to util
-        if (dateOfBirth != null) {
-            return (int) ChronoUnit.YEARS.between(dateOfBirth, LocalDate.now());
-        } else {
-            throw new AgeUndefinedException(this);
-        }
     }
 
     public abstract String introduceYourself();
@@ -77,7 +70,7 @@ public abstract class Person implements Identifiable {
     public String toString() {
         String output = "[" + id + "] " + firstName.toUpperCase() + " " + lastName.toUpperCase() + ". ";
         if (dateOfBirth != null) {
-            output += defineAge() + " years old. ";
+            output += AgeUtil.defineAge(this) + " years old. ";
         }
         if (address != null) {
             output += address;

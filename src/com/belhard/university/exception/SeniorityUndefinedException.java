@@ -11,7 +11,6 @@ public class SeniorityUndefinedException extends Exception {
 
     @Override
     public String toString() {
-        return "Seniority undefined: " +
-                person.getClass().getSimpleName().toLowerCase() + " " + person.getFirstName() + " " + person.getLastName();
+        return "Seniority undefined: [" + person.getId() + "] " + person.getFirstName() + " " + person.getLastName();
     }
 }

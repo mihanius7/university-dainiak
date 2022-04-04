@@ -8,6 +8,7 @@ import java.util.Objects;
 import com.belhard.university.entity.person.auxiliary.Money;
 import com.belhard.university.exception.SeniorityUndefinedException;
 import com.belhard.university.util.AccountantUtil;
+import com.belhard.university.util.AgeUtil;
 import com.belhard.university.util.CurrencyUtil;
 
 public abstract class Employee extends Person {
@@ -30,13 +31,6 @@ public abstract class Employee extends Person {
         this.workingStartDate = LocalDate.of(year, month, day);
     }
 
-    public int defineSeniorityYears() throws SeniorityUndefinedException {
-        if (workingStartDate != null)
-            return (int) ChronoUnit.YEARS.between(workingStartDate, LocalDate.now());
-        else
-            throw new SeniorityUndefinedException(this);
-    }
-
     public Money getBaseSalary() {
         return baseSalary;
     }
@@ -45,19 +39,20 @@ public abstract class Employee extends Person {
         if (newSalary.getCurrency() != Money.Currency.USD) {
             newSalary.setAmount(CurrencyUtil.convertToUSD(newSalary));
         }
-        if (newSalary.getAmount().compareTo(AccountantUtil.MIN_SALARY_USD) >= 0)
+        if (newSalary.getAmount().compareTo(AccountantUtil.MIN_SALARY_USD) >= 0) {
             this.baseSalary.setAmount(newSalary);
-        else
-            System.out.println("Base salary not changed. ");
+        } else {
+            throw new RuntimeException("Base salary not changed, Id: " + getId());
+        }
     }
 
     @Override
     public String toString() {
         String output = super.toString() + "\n";
         try {
-            output = output.concat("Seniority " + defineSeniorityYears() + " years. ");
+            output += "Seniority " + AgeUtil.defineSeniorityYears(this) + " years. ";
         } catch (SeniorityUndefinedException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Seniority undefined, id: " + id);
         }
         return output;
     }
