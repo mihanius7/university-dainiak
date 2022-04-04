@@ -1,11 +1,11 @@
 package com.belhard.university.entity.group;
 
-import java.util.Objects;
-
 import com.belhard.university.entity.person.Person;
-import com.belhard.university.entity.person.auxiliary.Faculty;
 import com.belhard.university.entity.person.Student;
 import com.belhard.university.entity.person.Teacher;
+import com.belhard.university.entity.person.auxiliary.Faculty;
+
+import java.util.Objects;
 
 public class StudentGroup extends Group {
     private Teacher teacher;

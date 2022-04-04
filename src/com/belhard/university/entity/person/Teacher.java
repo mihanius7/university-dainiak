@@ -5,6 +5,7 @@ import java.util.Objects;
 import com.belhard.university.entity.person.auxiliary.Money;
 import com.belhard.university.exception.AgeUndefinedException;
 import com.belhard.university.util.AccountantUtil;
+import com.belhard.university.util.AgeUtil;
 
 public class Teacher extends Employee {
     private String department;
@@ -72,7 +73,7 @@ public class Teacher extends Employee {
     public String introduceYourself() {
         int age;
         try {
-            age = defineAge();
+            age = AgeUtil.defineAge(this);
         } catch (AgeUndefinedException e) {
             throw new RuntimeException("Age undefined, id: [" + id + "] " + getFirstName() + " " + getLastName());
         }
