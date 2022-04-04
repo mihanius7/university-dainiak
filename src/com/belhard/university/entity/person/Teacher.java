@@ -60,21 +60,21 @@ public class Teacher extends Employee {
     @Override
     public String toString() {
         String output = (degree != null) ? degree.toString().toLowerCase() + " " : "";
-        output = output.concat(super.toString());
+        output += super.toString();
         Money currentSalary = AccountantUtil.defineCurrentSalary(this);
         Money holidayPay = AccountantUtil.defineHolidayPay(this);
-        output = output.concat("Salary: current " + currentSalary + ", holiday pay " + holidayPay);
-        output = output.concat("\nSubjects: " + getSubjectsString());
+        output += "Salary: current " + currentSalary + ", holiday pay " + holidayPay;
+        output += "\nSubjects: " + getSubjectsString();
         return output;
     }
 
     @Override
     public String introduceYourself() {
-        int age = 0;
+        int age;
         try {
             age = defineAge();
         } catch (AgeUndefinedException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Age undefined, id: " + id);
         }
         return String.format("Hello! My name is %s %s. I am %d years old. I am a %s. %nI am teaching %s%n",
                 firstName, lastName, age, degree.toString().toLowerCase(), getSubjectsString());

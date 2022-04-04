@@ -90,8 +90,6 @@ public class Task1 {
         studentGroup.removePerson(student6);
         studentGroup.setTeacher(teacher2);
         System.out.println(studentGroup.toList());
-        studentGroup.addStudent(student4);
-        System.out.println(studentGroup.toList());
         studentGroup.addStudent(student6);
         studentGroup.addStudent(student7);
         System.out.println(studentGroup.toList());

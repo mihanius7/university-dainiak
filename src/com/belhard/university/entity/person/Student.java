@@ -62,11 +62,11 @@ public class Student extends Person {
 
     @Override
     public String introduceYourself() {
-        int age = 0;
+        int age;
         try {
             age = defineAge();
         } catch (AgeUndefinedException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Age undefined, id: " + id);
         }
         return String.format(
                 "Hi! My name is %s. I am %d years old and I'm a student %nof %s faculty on %d-th year of study. My average mark is %.1f.%n", getFirstName(),
