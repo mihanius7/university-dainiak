@@ -11,8 +11,8 @@ import com.belhard.university.exception.AgeUndefinedException;
 public abstract class Person implements Identifiable {
     private static long count = 1L;
     private final Long id;
-    private final String firstName;
-    private String lastName;
+    final String firstName;
+    String lastName;
     private LocalDate dateOfBirth;
     private Address address;
 
