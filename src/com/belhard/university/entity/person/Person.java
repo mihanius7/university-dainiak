@@ -55,8 +55,8 @@ public abstract class Person implements Identifiable {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+    public void setDateOfBirth(int year, int month, int day) {
+        this.dateOfBirth = LocalDate.of(year, month, day);
     }
 
     public String getDateOfBirthString() {

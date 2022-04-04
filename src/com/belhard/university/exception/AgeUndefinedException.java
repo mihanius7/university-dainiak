@@ -11,6 +11,6 @@ public class AgeUndefinedException extends RuntimeException {
 
     @Override
     public String toString() {
-        return "Seniority undefined: " + person.getId();
+        return "Age undefined: [" + person.getId() + "] " + person.getFirstName() + " " + person.getLastName();
     }
 }

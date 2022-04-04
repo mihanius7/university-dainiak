@@ -19,7 +19,7 @@ public class Task1 {
         //Departments
         Teacher teacher1 = new Teacher("Harry", "Lemetre");
         teacher1.setDegree(Teacher.AcademicDegree.DOCTOR);
-        teacher1.setDateOfBirth(LocalDate.of(1960, 4, 15));
+        teacher1.setDateOfBirth(1960, 4, 15);
         teacher1.setWorkingStartDate(1987, 9, 1);
         teacher1.setAddress(new Address("Italy", "Rome", "via Nazionale", 13));
         teacher1.setSubjects(new String[]{"Astrophysics", "Physics", "Cosmology"});
@@ -31,12 +31,12 @@ public class Task1 {
         teacher2.setBaseSalary(new Money(BigDecimal.valueOf(450)));
         Teacher teacher3 = new Teacher("Ludwig", "Alaskin");
         teacher3.setDegree(Teacher.AcademicDegree.MASTER);
-        teacher3.setDateOfBirth(LocalDate.of(1985, 7, 11));
+        teacher3.setDateOfBirth(1985, 7, 11);
         teacher3.setWorkingStartDate(2010, 1, 10);
         teacher3.setSubjects(new String[]{"Math", "Computer science"});
         teacher3.setBaseSalary(new Money(BigDecimal.valueOf(330)));
         Cleaner cleaner1 = new Cleaner("Timmy", "Bear");
-        cleaner1.setDateOfBirth(LocalDate.of(1990, 8, 7));
+        cleaner1.setDateOfBirth(1990, 8, 7);
         cleaner1.setRoomsForCleaning(new String[]{"303", "304-1", "304-2", "223", "225", "227"});
         cleaner1.setWorkingStartDate(2018, 8, 15);
         cleaner1.setBaseSalary(new Money(BigDecimal.valueOf(240), Money.Currency.EUR));

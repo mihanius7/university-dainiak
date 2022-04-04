@@ -45,10 +45,11 @@ public abstract class Employee extends Person {
         if (newSalary.getCurrency() != Money.Currency.USD) {
             newSalary.setAmount(CurrencyUtil.convertToUSD(newSalary));
         }
-        if (newSalary.getAmount().compareTo(AccountantUtil.MIN_SALARY_USD) >= 0)
+        if (newSalary.getAmount().compareTo(AccountantUtil.MIN_SALARY_USD) >= 0) {
             this.baseSalary.setAmount(newSalary);
-        else
-            System.out.println("Base salary not changed. ");
+        } else {
+            throw new RuntimeException("Base salary not changed, Id: " + getId());
+        }
     }
 
     @Override

@@ -74,7 +74,7 @@ public class Teacher extends Employee {
         try {
             age = defineAge();
         } catch (AgeUndefinedException e) {
-            throw new RuntimeException("Age undefined, id: " + id);
+            throw new RuntimeException("Age undefined, id: [" + id + "] " + getFirstName() + " " + getLastName());
         }
         return String.format("Hello! My name is %s %s. I am %d years old. I am a %s. %nI am teaching %s%n",
                 firstName, lastName, age, degree.toString().toLowerCase(), getSubjectsString());
