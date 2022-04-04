@@ -3,6 +3,7 @@ package com.belhard.university.entity.person;
 import com.belhard.university.entity.person.auxiliary.Money;
 import com.belhard.university.exception.AgeUndefinedException;
 import com.belhard.university.util.AccountantUtil;
+import com.belhard.university.util.AgeUtil;
 
 import java.util.Objects;
 
@@ -53,7 +54,7 @@ public class Cleaner extends Employee {
     public String introduceYourself() {
         int age;
         try {
-            age = defineAge();
+            age = AgeUtil.defineAge(this);
         } catch (AgeUndefinedException e) {
             throw new RuntimeException("Age undefined, id: " + id);
         }

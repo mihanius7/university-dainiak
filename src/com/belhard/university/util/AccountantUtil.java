@@ -27,7 +27,7 @@ public class AccountantUtil {
     private static BigDecimal defineSeniorityBonusRatio(Employee employee) {
         int seniority = 0;
         try {
-            seniority = employee.defineSeniorityYears();
+            seniority = AgeUtil.defineSeniorityYears(employee);
         } catch (SeniorityUndefinedException e) {
             e.printStackTrace();
         }

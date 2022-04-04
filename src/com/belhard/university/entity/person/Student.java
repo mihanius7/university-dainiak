@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import com.belhard.university.entity.person.auxiliary.Faculty;
 import com.belhard.university.exception.AgeUndefinedException;
+import com.belhard.university.util.AgeUtil;
 
 public class Student extends Person {
     private Faculty faculty;
@@ -49,7 +50,7 @@ public class Student extends Person {
         if (studyStartDate != null)
             return ChronoUnit.YEARS.between(studyStartDate, LocalDate.now()) + 1;
         else
-            return -1;//FIXME throw
+            throw new RuntimeException("Study start date undefined, id: [" + id + "] " + getFirstName() + " " + getLastName());
     }
 
     @Override
@@ -64,7 +65,7 @@ public class Student extends Person {
     public String introduceYourself() {
         int age;
         try {
-            age = defineAge();
+            age = AgeUtil.defineAge(this);
         } catch (AgeUndefinedException e) {
             throw new RuntimeException("Age undefined, id: " + id);
         }
