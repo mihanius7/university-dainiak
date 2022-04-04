@@ -63,12 +63,13 @@ public class Department extends Group {
     public String toList() {
         String output = "\n" + getInfo() + "\n";
         for (Person teacher : persons)
-            output = output.concat("TEACHER " + teacher.toString() + "\n");
-        if (cleaner != null)
-            output = output.concat(cleaner + "\n");
-        output = output.concat("DEPARTMENT MANAGER " + manager.getDegree().toString().toLowerCase() + " "
-                + manager.getFirstName() + " " + manager.getLastName() + ". \n");
-        output = output.concat("Total current salary: " + defineTotalSalary() + ". ");
+            output += "TEACHER " + teacher.toString() + "\n";
+        if (cleaner != null) {
+            output += cleaner + "\n";
+        }
+        output += "DEPARTMENT MANAGER " + manager.getDegree().toString().toLowerCase() + " "
+                + manager.getFirstName() + " " + manager.getLastName() + ". \n";
+        output += "Total current salary: " + defineTotalSalary() + ". ";
         return output;
     }
 

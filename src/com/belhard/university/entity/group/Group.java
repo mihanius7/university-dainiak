@@ -60,8 +60,8 @@ public abstract class Group implements Identifiable {
     public String getInfo() {
         String output = "* * * ";
         int vacantPlaces = MAX_PERSONS_COUNT - getCurrentPersonCount();
-        output = output.concat(groupName + ": Persons " + getCurrentPersonCount() + ", can accept "
-                + vacantPlaces + " persons * * *");
+        output += groupName + ": Persons " + getCurrentPersonCount() + ", can accept "
+                + vacantPlaces + " persons * * *";
         return output;
     }
 

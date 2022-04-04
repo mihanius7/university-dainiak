@@ -55,9 +55,9 @@ public abstract class Employee extends Person {
     public String toString() {
         String output = super.toString() + "\n";
         try {
-            output = output.concat("Seniority " + defineSeniorityYears() + " years. ");
+            output += "Seniority " + defineSeniorityYears() + " years. ";
         } catch (SeniorityUndefinedException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Seniority undefined, id: " + id);
         }
         return output;
     }
